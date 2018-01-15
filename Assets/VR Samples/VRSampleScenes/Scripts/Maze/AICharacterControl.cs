@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using VRStandardAssets.Maze;
+using UniGenVR.Maze;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
     [RequireComponent(typeof(ThirdPersonCharacter))]

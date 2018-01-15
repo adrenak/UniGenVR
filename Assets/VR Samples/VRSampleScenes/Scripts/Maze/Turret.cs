@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This script is used to control the gun
     // turret that prevents the character escaping

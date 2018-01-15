@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Menu
+namespace UniGenVR.Menu
 {
     // This script flips through a series of textures
     // whilst the user is looking at it.
@@ -10,7 +10,7 @@ namespace VRStandardAssets.Menu
     {
         [SerializeField] private int m_FrameRate = 30;                  // The number of times per second the image should change.
         [SerializeField] private MeshRenderer m_ScreenMesh;             // The mesh renderer who's texture will be changed.
-        [SerializeField] private VRInteractiveItem m_VRInteractiveItem; // The VRInteractiveItem that needs to be looked at for the textures to play.
+        [SerializeField] private Interactable m_VRInteractiveItem; // The VRInteractiveItem that needs to be looked at for the textures to play.
         [SerializeField] private Texture[] m_AnimTextures;              // The textures that will be looped through.
 
 

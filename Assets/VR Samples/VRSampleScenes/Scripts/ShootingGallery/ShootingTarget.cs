@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using VRStandardAssets.Common;
-using VRStandardAssets.Utils;
+using UniGenVR.Common;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.ShootingGallery
+namespace UniGenVR.ShootingGallery
 {
     // This script handles a target in the shooter scenes.
     // It includes what should happen when it is hit and
@@ -24,7 +24,7 @@ namespace VRStandardAssets.ShootingGallery
 
 
         private Transform m_CameraTransform;                            // Used to make sure the target is facing the camera.
-        private VRInteractiveItem m_InteractiveItem;                    // Used to handle the user clicking whilst looking at the target.
+        private Interactable m_InteractiveItem;                    // Used to handle the user clicking whilst looking at the target.
         private AudioSource m_Audio;                                    // Used to play the various audio clips.
         private Renderer m_Renderer;                                    // Used to make the target disappear before it is removed.
         private Collider m_Collider;                                    // Used to make sure the target doesn't interupt other shots happening.
@@ -36,7 +36,7 @@ namespace VRStandardAssets.ShootingGallery
             // Setup the references.
             m_CameraTransform = Camera.main.transform;
             m_Audio = GetComponent<AudioSource> ();
-            m_InteractiveItem = GetComponent<VRInteractiveItem>();
+            m_InteractiveItem = GetComponent<Interactable>();
             m_Renderer = GetComponent<Renderer>();
             m_Collider = GetComponent<Collider>();
         }

@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.VR;
-using VRStandardAssets.Common;
+using UniGenVR.Common;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This class handles the movement of the flyer ship.
     public class FlyerMovementController : MonoBehaviour

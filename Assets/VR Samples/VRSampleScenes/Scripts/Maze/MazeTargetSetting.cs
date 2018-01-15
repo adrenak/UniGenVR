@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This is a simple class used in the maze scene
     // that determines when the character can be given
@@ -13,7 +13,7 @@ namespace VRStandardAssets.Maze
 
 
         [SerializeField] private Reticle m_Reticle;                     // This is used to reference the position and use it as the destination.
-        [SerializeField] private VRInteractiveItem m_InteractiveItem;   // The VRInteractiveItem on the maze, used to detect double clicks on the maze.
+        [SerializeField] private Interactable m_InteractiveItem;   // The VRInteractiveItem on the maze, used to detect double clicks on the maze.
 
 
         private bool m_Active;                                          // This determines whether the character can be given targets or not.

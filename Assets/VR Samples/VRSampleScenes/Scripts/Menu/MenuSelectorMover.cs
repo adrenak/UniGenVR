@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Menu
+namespace UniGenVR.Menu
 {
     // In the main menu, a thin bar is shown below each
     // of the scene options.  The bar moves to below
@@ -14,7 +14,7 @@ namespace VRStandardAssets.Menu
         [SerializeField] private float m_MoveSpeed = 7f;        // How fast the bar moves to a new selection when the user changes what they are looking at.
         [SerializeField] private Transform m_ParentTransform;   // The parent object in the selector hierarchy, this has no visual element.
         [SerializeField] private Transform m_ChildTransform;    // The child object in the selector hierarchy, this has a mesh renderer to display the bar.
-        [SerializeField] private VRInteractiveItem[] m_Items;   // The VRInteractiveItems that the user can look at to move the selector.
+        [SerializeField] private Interactable[] m_Items;   // The VRInteractiveItems that the user can look at to move the selector.
 
 
         private Quaternion m_TargetRotation;                    // The rotation that the selector is trying to reach.

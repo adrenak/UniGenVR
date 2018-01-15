@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.VR;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.ShootingGallery
+namespace UniGenVR.ShootingGallery
 {
     // This script controls the gun for the shooter
     // scenes, including it's movement and shooting.
@@ -15,7 +15,7 @@ namespace VRStandardAssets.ShootingGallery
         [SerializeField] private float m_GunContainerSmoothing = 10f;                   // How fast the gun arm follows the reticle.
         [SerializeField] private AudioSource m_GunAudio;                                // The audio source which plays the sound of the gun firing.
         [SerializeField] private ShootingGalleryController m_ShootingGalleryController; // Reference to the controller so the gun cannot fire whilst the game isn't playing.
-        [SerializeField] private VREyeRaycaster m_EyeRaycaster;                         // Used to detect whether the gun is currently aimed at something.
+        [SerializeField] private EyeRaycaster m_EyeRaycaster;                         // Used to detect whether the gun is currently aimed at something.
         [SerializeField] private VRInput m_VRInput;                                     // Used to tell the gun when to fire.
         [SerializeField] private Transform m_CameraTransform;                           // Used as a reference to move this gameobject towards.
         [SerializeField] private Transform m_GunContainer;                              // This contains the gun arm needs to be moved smoothly.
@@ -37,13 +37,13 @@ namespace VRStandardAssets.ShootingGallery
 
         private void OnEnable ()
         {
-            m_VRInput.OnDown += HandleDown;
+            VRInput.OnDown += HandleDown;
         }
 
 
         private void OnDisable ()
         {
-            m_VRInput.OnDown -= HandleDown;
+            VRInput.OnDown -= HandleDown;
         }
 
 

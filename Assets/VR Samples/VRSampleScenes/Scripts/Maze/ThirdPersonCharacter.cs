@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]

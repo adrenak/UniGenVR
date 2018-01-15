@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using VRStandardAssets.Common;
-using VRStandardAssets.Utils;
+using UniGenVR.Common;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.ShootingGallery
+namespace UniGenVR.ShootingGallery
 {
     // This class controls the flow of the shooter games.  It
     // includes the introduction, spawning of targets and
@@ -23,7 +23,7 @@ namespace VRStandardAssets.ShootingGallery
         [SerializeField] private float m_SphereSpawnMaxHeight = 15f;    // For the 360 shooter, the highest targets can spawn.
         [SerializeField] private SelectionSlider m_SelectionSlider;     // Used to confirm the user has understood the intro UI.
         [SerializeField] private Transform m_Camera;                    // Used to determine where targets can spawn.
-        [SerializeField] private SelectionRadial m_SelectionRadial;     // Used to continue past the outro.
+        [SerializeField] private ReticleRadial m_SelectionRadial;     // Used to continue past the outro.
         [SerializeField] private Reticle m_Reticle;                     // This is turned on and off when it is required and not.
         [SerializeField] private Image m_TimerBar;                      // The time remaining is shown on the UI for the gun, this is a reference to the image showing the time remaining.
         [SerializeField] private ObjectPool m_TargetObjectPool;         // The object pool that stores all the targets.

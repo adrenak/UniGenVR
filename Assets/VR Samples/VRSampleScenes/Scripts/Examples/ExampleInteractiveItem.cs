@@ -1,7 +1,7 @@
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Examples
+namespace UniGenVR.Examples
 {
     // This script is a simple example of how an interactive item can
     // be used to change things on gameobjects by handling events.
@@ -11,7 +11,7 @@ namespace VRStandardAssets.Examples
         [SerializeField] private Material m_OverMaterial;                  
         [SerializeField] private Material m_ClickedMaterial;               
         [SerializeField] private Material m_DoubleClickedMaterial;         
-        [SerializeField] private VRInteractiveItem m_InteractiveItem;
+        [SerializeField] private Interactable m_InteractiveItem;
         [SerializeField] private Renderer m_Renderer;
 
 

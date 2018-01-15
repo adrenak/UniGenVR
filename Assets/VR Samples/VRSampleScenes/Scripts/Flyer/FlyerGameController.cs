@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script controls the flow of the flyer
     // game and how all the other controllers work
@@ -19,11 +19,11 @@ namespace VRStandardAssets.Flyer
         [SerializeField] private FlyerMovementController m_FlyerMovementController;         // The script controlling the movement of the flyer.
         [SerializeField] private EnvironmentController m_EnvironmentController;             // This needs to know when to start and stop spawning the environment.
         [SerializeField] private UIController m_UIController;                               // This needs to know when specific pieces of UI should be shown.
-        [SerializeField] private GUIArrows m_GuiArrows;                                     // The GUI Arrows shown at the start.
+        [SerializeField] private DirectionArrows m_GuiArrows;                                     // The GUI Arrows shown at the start.
         [SerializeField] private Image m_TimerBar;                                          // Timer slider to indicate time remaining.
         [SerializeField] private InputWarnings m_InputWarnings;                             // This needs to know when to show different warnings.
-        [SerializeField] private VRCameraFade m_CameraFade;                                 // This is used to fade out and back in again as the game starts.
-        [SerializeField] private SelectionRadial m_SelectionRadial;                         // Used to restart the game.
+        [SerializeField] private CameraFade m_CameraFade;                                 // This is used to fade out and back in again as the game starts.
+        [SerializeField] private ReticleRadial m_SelectionRadial;                         // Used to restart the game.
         
 
         private float m_EndTime;                                                            // The time at the point the game should end.

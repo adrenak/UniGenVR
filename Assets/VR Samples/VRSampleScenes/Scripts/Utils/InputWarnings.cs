@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace VRStandardAssets.Utils {
+namespace UniGenVR.Utils {
     // This script is used to show messages when the user
     // seems to be using the wrong type of input.
     public class InputWarnings : MonoBehaviour {
@@ -42,18 +42,18 @@ namespace VRStandardAssets.Utils {
 
 
         private void OnEnable() {
-            m_VRInput.OnDoubleClick += HandleDoubleClick;
-            m_VRInput.OnClick += HandleClick;
-            m_VRInput.OnSwipe += HandleSwipe;
-            m_VRInput.OnDown += HandleDown;
+            VRInput.OnDoubleClick += HandleDoubleClick;
+            VRInput.OnClick += HandleClick;
+            VRInput.OnSwipe += HandleSwipe;
+            VRInput.OnDown += HandleDown;
         }
 
 
         private void OnDisable() {
-            m_VRInput.OnDoubleClick -= HandleDoubleClick;
-            m_VRInput.OnClick -= HandleClick;
-            m_VRInput.OnSwipe -= HandleSwipe;
-            m_VRInput.OnDown -= HandleDown;
+            VRInput.OnDoubleClick -= HandleDoubleClick;
+            VRInput.OnClick -= HandleClick;
+            VRInput.OnSwipe -= HandleSwipe;
+            VRInput.OnDown -= HandleDown;
         }
 
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.VR;
 
-namespace VRStandardAssets.Examples
+namespace UniGenVR.Examples
 {
     // This script shows how renderscale affects the visuals
     // and performance of a scene.

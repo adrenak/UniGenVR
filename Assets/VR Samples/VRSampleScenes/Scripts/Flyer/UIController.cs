@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using VRStandardAssets.Common;
-using VRStandardAssets.Utils;
+using UniGenVR.Common;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // The script controls the UI for the flyer scene.
     public class UIController : MonoBehaviour
     {
-        [SerializeField] private UIFader m_IntroUI;     // Reference to the script that controls the fading of the intro UI.
-        [SerializeField] private UIFader m_OutroUI;     // Reference to the script that controls the fading of the outro UI.
+        [SerializeField] private ScreenFader m_IntroUI;     // Reference to the script that controls the fading of the intro UI.
+        [SerializeField] private ScreenFader m_OutroUI;     // Reference to the script that controls the fading of the outro UI.
         [SerializeField] private Text m_TotalScore;     // The text component used to display the score for this session.
         [SerializeField] private Text m_HighScore;      // The text component used to display the high score.
 

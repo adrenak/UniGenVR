@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // The other scripts on the player character in the maze
     // scene are from Unity's Standard Assets.  This script is

@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Menu
+namespace UniGenVR.Menu
 {
     // This script is for loading scenes from the main menu.
     // Each 'button' will be a rendering showing the scene
@@ -15,9 +15,9 @@ namespace VRStandardAssets.Menu
 
 
         [SerializeField] private string m_SceneToLoad;                      // The name of the scene to load.
-        [SerializeField] private VRCameraFade m_CameraFade;                 // This fades the scene out when a new scene is about to be loaded.
-        [SerializeField] private SelectionRadial m_SelectionRadial;         // This controls when the selection is complete.
-        [SerializeField] private VRInteractiveItem m_InteractiveItem;       // The interactive item for where the user should click to load the level.
+        [SerializeField] private CameraFade m_CameraFade;                 // This fades the scene out when a new scene is about to be loaded.
+        [SerializeField] private ReticleRadial m_SelectionRadial;         // This controls when the selection is complete.
+        [SerializeField] private Interactable m_InteractiveItem;       // The interactive item for where the user should click to load the level.
 
 
         private bool m_GazeOver;                                            // Whether the user is looking at the VRInteractiveItem currently.

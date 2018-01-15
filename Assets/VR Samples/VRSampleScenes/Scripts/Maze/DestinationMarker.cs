@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // As a visual aid to where the character in the maze scene
     // is headed, this class shows a small pin on the ground at

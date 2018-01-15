@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     public class FlyerHealthController : MonoBehaviour
     {

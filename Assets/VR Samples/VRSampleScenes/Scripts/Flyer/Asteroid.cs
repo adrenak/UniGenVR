@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-using VRStandardAssets.Common;
+using UniGenVR.Common;
 using Random = UnityEngine.Random;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This class controls each asteroid in the flyer scene.
     public class Asteroid : MonoBehaviour

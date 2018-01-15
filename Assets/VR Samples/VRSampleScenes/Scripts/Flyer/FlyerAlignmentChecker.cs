@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script approximates which ring
     // the flyer is in line with and lets it

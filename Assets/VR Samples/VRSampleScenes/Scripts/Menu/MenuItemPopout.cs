@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Menu
+namespace UniGenVR.Menu
 {
     // This class 'pops' each of the menu items out
     // when the user looks at them.
     public class MenuItemPopout : MonoBehaviour
     {
         [SerializeField] private Transform m_Transform;         // Used to control the movement whatever needs to pop out.
-        [SerializeField] private VRInteractiveItem m_Item;      // The VRInteractiveItem of whatever should pop out.
+        [SerializeField] private Interactable m_Item;      // The VRInteractiveItem of whatever should pop out.
         [SerializeField] private float m_PopSpeed = 8f;         // The speed at which the item should pop out.
         [SerializeField] private float m_PopDistance = 0.5f;    // The distance the item should pop out.
 

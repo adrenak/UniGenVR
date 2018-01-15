@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.VR;
 
-namespace VRStandardAssets.Examples
+namespace UniGenVR.Examples
 {
     // This script shows how gameobjects can react to
     // the rotation of the user's head.  It tilts the

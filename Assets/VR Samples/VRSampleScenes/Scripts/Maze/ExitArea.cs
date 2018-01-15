@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This script controls what happens when
     // the character reaches the exit of the maze.

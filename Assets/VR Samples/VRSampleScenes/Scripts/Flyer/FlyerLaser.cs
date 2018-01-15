@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script controls the behaviour of each laser instance.
     public class FlyerLaser : MonoBehaviour

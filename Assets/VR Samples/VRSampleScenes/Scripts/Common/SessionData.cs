@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace VRStandardAssets.Common
+namespace UniGenVR.Common
 {
     // This class is used to keep score during a game and save
     // the highscores to PlayerPrefs.

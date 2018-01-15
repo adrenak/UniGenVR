@@ -1,7 +1,7 @@
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This class is used to control the power to the
     // turret in the maze scene.  It uses a SelectionSlider
@@ -13,7 +13,7 @@ namespace VRStandardAssets.Maze
         [SerializeField] private AudioClip m_SwitchPressClip;           // The audio clip for when the selection slider is filled.
         [SerializeField] private AudioClip m_ActivateGUIClip;           // The audio for when the selection slider first appears.
         [SerializeField] private SelectionSlider m_SelectionSlider;     // The selection slider that needs to be filled for the power to be turned off.
-        [SerializeField] private UIFader m_SelectionSliderFader;        // The fader that controls the appearance and disappearance of the slider.
+        [SerializeField] private ScreenFader m_SelectionSliderFader;        // The fader that controls the appearance and disappearance of the slider.
         [SerializeField] private Transform m_Character;                 // Used to check it is the player that has entered the trigger zone.
         [SerializeField] private Turret m_Turret;                       // Reference to the turret that will be turned off by the switch.
 

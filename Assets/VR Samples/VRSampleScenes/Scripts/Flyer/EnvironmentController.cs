@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRStandardAssets.Common;
-using VRStandardAssets.Utils;
+using UniGenVR.Common;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script handles the spawning and some of the
     // interactions of Rings and Asteroids with the flyer.

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using VRStandardAssets.Common;
+using UniGenVR.Common;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script handles the behaviour of the gates
     // in the flyer scene including changing their colour

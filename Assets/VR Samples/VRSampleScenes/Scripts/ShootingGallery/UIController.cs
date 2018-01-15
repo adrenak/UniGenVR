@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using VRStandardAssets.Common;
-using VRStandardAssets.Utils;
+using UniGenVR.Common;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.ShootingGallery
+namespace UniGenVR.ShootingGallery
 {
     // This simple class encapsulates the UI for
     // the shooter scenes so that the game
@@ -12,9 +12,9 @@ namespace VRStandardAssets.ShootingGallery
     // control the UI during the games.
     public class UIController : MonoBehaviour
     {
-        [SerializeField] private UIFader m_IntroUI;     // This controls fading the UI shown during the intro.
-        [SerializeField] private UIFader m_OutroUI;     // This controls fading the UI shown during the outro.
-        [SerializeField] private UIFader m_PlayerUI;    // This controls fading the UI that shows around the gun that moves with the player.
+        [SerializeField] private ScreenFader m_IntroUI;     // This controls fading the UI shown during the intro.
+        [SerializeField] private ScreenFader m_OutroUI;     // This controls fading the UI shown during the outro.
+        [SerializeField] private ScreenFader m_PlayerUI;    // This controls fading the UI that shows around the gun that moves with the player.
         [SerializeField] private Text m_TotalScore;     // Reference to the Text component that displays the player's score at the end.
         [SerializeField] private Text m_HighScore;      // Reference to the Text component that displays the high score at the end.
 

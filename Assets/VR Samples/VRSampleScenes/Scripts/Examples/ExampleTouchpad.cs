@@ -1,34 +1,27 @@
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Examples
-{
+namespace UniGenVR.Examples {
     // This script shows a simple example of how
     // swipe controls can be handled.
-    public class ExampleTouchpad : MonoBehaviour
-    {
+    public class ExampleTouchpad : MonoBehaviour {
         [SerializeField] private float m_Torque = 10f;
-        [SerializeField] private VRInput m_VRInput;                                        
-        [SerializeField] private Rigidbody m_Rigidbody;                                    
+        [SerializeField] private Rigidbody m_Rigidbody;
 
 
-        private void OnEnable()
-        {
-           m_VRInput.OnSwipe += HandleSwipe;
+        private void OnEnable() {
+            VRInput.OnSwipe += HandleSwipe;
         }
 
 
-        private void OnDisable()
-        {
-            m_VRInput.OnSwipe -= HandleSwipe;
+        private void OnDisable() {
+            VRInput.OnSwipe -= HandleSwipe;
         }
 
 
         //Handle the swipe events by applying AddTorque to the Ridigbody
-        private void HandleSwipe(VRInput.SwipeDirection swipeDirection)
-        {
-            switch (swipeDirection)
-            {
+        private void HandleSwipe(VRInput.SwipeDirection swipeDirection) {
+            switch (swipeDirection) {
                 case VRInput.SwipeDirection.NONE:
                     break;
                 case VRInput.SwipeDirection.UP:

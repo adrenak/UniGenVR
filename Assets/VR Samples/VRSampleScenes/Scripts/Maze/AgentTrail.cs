@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This script simply shows the path of the
     // NavMeshAgent in the maze scene.

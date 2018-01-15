@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using VRStandardAssets.Utils;
+using UniGenVR.Utils;
 
-namespace VRStandardAssets.Maze
+namespace UniGenVR.Maze
 {
     // This is the game controller for the maze scene.
     // It manages turning things on and off during the
@@ -10,9 +10,9 @@ namespace VRStandardAssets.Maze
     public class MazeGameController : MonoBehaviour
     {
         [SerializeField] private SelectionSlider m_SelectionSlider;         // This is the selection slider that must be filled to get into the play phase.
-        [SerializeField] private UIFader m_InstructionsFader;               // The fader that is in control of the UI for the start of the game.
-        [SerializeField] private UIFader m_WinFader;                        // The fader that is in control of the UI for when the player wins the game.
-        [SerializeField] private UIFader m_LoseFader;                       // The fader that is in control of the UI for when the player loses the game.
+        [SerializeField] private ScreenFader m_InstructionsFader;               // The fader that is in control of the UI for the start of the game.
+        [SerializeField] private ScreenFader m_WinFader;                        // The fader that is in control of the UI for when the player wins the game.
+        [SerializeField] private ScreenFader m_LoseFader;                       // The fader that is in control of the UI for when the player loses the game.
         [SerializeField] private Player m_Player;                           // Reference to the player to determine whether the game is lost.
         [SerializeField] private ExitArea m_ExitArea;                       // Reference to the exit area to determine whether the game is won.
         [SerializeField] private MazeTargetSetting m_MazeTargetSetting;     // This needs to be turned on and off when the game is running and not.
@@ -22,8 +22,8 @@ namespace VRStandardAssets.Maze
         [SerializeField] private Turret m_Turret;                           // This needs to be reset for each new game.
         [SerializeField] private DestinationMarker m_DestinationMarker;     // This needs to know when to be visible and not.
         [SerializeField] private AudioSource m_GameOverAudioSource;         // The audio source that plays the audio for when the player loses the game.
-        [SerializeField] private VRCameraFade m_CameraFade;                 // Used for fading in and out between plays of the game.
-        [SerializeField] private SelectionRadial m_SelectionRadial;         // Used for restarting the game at the end.
+        [SerializeField] private CameraFade m_CameraFade;                 // Used for fading in and out between plays of the game.
+        [SerializeField] private ReticleRadial m_SelectionRadial;         // Used for restarting the game at the end.
         [SerializeField] private CameraOrbit m_CameraOrbit;                 // This needs to be reset for each new game.
         [SerializeField] private InputWarnings m_InputWarnings;             // Different warnings need to be displayed at different points through the maze game.
 

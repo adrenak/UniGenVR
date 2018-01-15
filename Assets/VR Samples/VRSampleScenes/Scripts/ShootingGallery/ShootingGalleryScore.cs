@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using VRStandardAssets.Common;
+using UniGenVR.Common;
 
-namespace VRStandardAssets.ShootingGallery
+namespace UniGenVR.ShootingGallery
 {
     // This script displays the player's score during the
     // shooter scenes.

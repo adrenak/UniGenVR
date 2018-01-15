@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace VRStandardAssets.Flyer
+namespace UniGenVR.Flyer
 {
     // This script looks after the explosion after an asteroid has been hit.
     public class AsteroidExplosion : MonoBehaviour
