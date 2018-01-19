@@ -43,7 +43,7 @@ namespace UniGenVR {
         }
 
         ReticleRadial m_VRReticleRadial;
-        public ReticleRadial ReticleRadial {
+        public ReticleRadial reticleRadial {
             get {
                 if (m_VRReticleRadial == null)
                     m_VRReticleRadial = GetComponent<ReticleRadial>();
@@ -51,11 +51,11 @@ namespace UniGenVR {
             }
         }
 
-        CameraFade m_VRCameraFade;
-        public CameraFade vrCameraFade {
+        CameraFader m_VRCameraFade;
+        public CameraFader vrCameraFade {
             get {
                 if (m_VRCameraFade == null)
-                    m_VRCameraFade = GetComponent<CameraFade>();
+                    m_VRCameraFade = GetComponent<CameraFader>();
                 return m_VRCameraFade;
             }
         }

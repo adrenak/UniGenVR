@@ -1,6 +1,5 @@
 ﻿using System;
 using UniGenVR.Utils;
-using UniGenVR.Component;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -91,16 +90,13 @@ namespace UniGenVR.UI {
             // When the bar starts to fill, reset the timer.
             m_Timer = 0f;
 
-            // The amount of time it takes to fill is either the duration set in the inspector, or the duration of the radial.
-            float fillTime = reticleRadial != null ? reticleRadial.SelectionDuration : m_Duration;
-
             // Until the timer is greater than the fill time...
-            while (m_Timer < fillTime) {
+            while (m_Timer < m_Duration) {
                 // ... add to the timer the difference between frames.
                 m_Timer += Time.deltaTime;
 
                 // Set the value of the slider or the UV based on the normalised time.
-                SetSliderValue(m_Timer / fillTime);
+                SetSliderValue(m_Timer / m_Duration);
 
                 // Wait until next frame.
                 yield return null;
