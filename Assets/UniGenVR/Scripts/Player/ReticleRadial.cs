@@ -24,6 +24,7 @@ namespace UniGenVR.Utils {
             VRInput.OnHold += HandleHold;
             VRInput.OnUp += HandleUp;
             VRInput.OnMaxHold += HandleMaxHold;
+            VRInput.OnDown += HandleDown;
         }
 
 
@@ -31,8 +32,8 @@ namespace UniGenVR.Utils {
             VRInput.OnHold -= HandleHold;
             VRInput.OnUp -= HandleUp;
             VRInput.OnMaxHold -= HandleMaxHold;
+            VRInput.OnDown -= HandleDown;
         }
-
 
         private void Start() {
             // Setup the radial to have no fill at the start and hide if necessary.
@@ -57,14 +58,18 @@ namespace UniGenVR.Utils {
             m_Selection.fillAmount = 0f;
         }
 
-        private void HandleMaxHold() {
-            m_Selection.fillAmount = 1;
+        private void HandleDown() {
+            m_Selection.fillAmount = 0;
         }
 
         private void HandleHold(float obj) {
-            m_Selection.fillAmount = 1;
+            m_Selection.fillAmount = obj;
         }
 
+        private void HandleMaxHold() {
+            m_Selection.fillAmount = 1;
+        }
+        
         private void HandleUp() {
             m_Selection.fillAmount = 0f;
         }

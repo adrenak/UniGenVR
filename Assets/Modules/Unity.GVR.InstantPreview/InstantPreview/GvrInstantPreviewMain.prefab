@@ -86,22 +86,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013061525784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7528488988f9d48478da328909125dea, type: 3}
+  m_Script: {fileID: 11500000, guid: 65c31374e376920479b01ebd300f345a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutputResolution: 0
-  MultisampleCount: 0
-  BitRate: 3
-  InstallApkOnRun: 1
-  InstantPreviewApk: {fileID: 102900000, guid: dc278786e6540af428ccbf7825495004, type: 3}
 --- !u!114 &114792940664812010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013061525784}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b78ffabb50d1e94ca164106f5444e34, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e6020b770fadd4588bf7bd3c19bbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OutputResolution: 0
+  MultisampleCount: 0
+  BitRate: 3
+  InstallApkOnRun: 1
+  InstantPreviewApk: {fileID: 102900000, guid: db68f0490f228a64fb62dc9d2f510d08, type: 3}

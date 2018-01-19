@@ -18,8 +18,8 @@ namespace UniGenVR.Utils {
 
         [SerializeField] KeyCode m_TriggerKey;
         [SerializeField] KeyCode m_CancelKey;
-        [SerializeField] float m_MaxHoldTime;
-        [SerializeField] float m_MinHoldTime;
+        [SerializeField] float m_MaxHoldTime = 2;
+        [SerializeField] float m_MinHoldTime = .2F;
 
         public static event Action<SwipeDirection> OnSwipe;                // Called every frame passing in the swipe, including if there is no swipe.
         public static event Action<float> OnHold;
@@ -59,6 +59,7 @@ namespace UniGenVR.Utils {
             if (Input.GetKeyDown(m_TriggerKey)) {
                 // When Fire1 is pressed record the position of the mouse.
                 m_MouseDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                m_LastMouseDownTime = Time.time;
 
                 // If anything has subscribed to OnDown call it.
                 if (OnDown != null)
@@ -92,9 +93,10 @@ namespace UniGenVR.Utils {
 
             // TRIGGER HOLD
             if (Input.GetKey(m_TriggerKey)) {
-                var normalizedHoldTime = (Time.time - m_LastMouseDownTime) / m_MaxHoldTime;
+                var holdTime = (Time.time - m_LastMouseDownTime);
+                var normalizedHoldTime = holdTime / m_MaxHoldTime;
 
-                if(OnHold != null && normalizedHoldTime > m_MinHoldTime)
+                if(OnHold != null && holdTime > m_MinHoldTime)
                     OnHold(normalizedHoldTime);
                 if(OnMaxHold != null && normalizedHoldTime > 1) {
                     OnMaxHold();

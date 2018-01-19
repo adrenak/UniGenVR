@@ -5,8 +5,9 @@ A set of tools for making VR experiences for Generic VR devices.
 GearVR and Daydream devices offer great input support through their controllers. Generic headsets only support gaze based input with limited interaction using Bluetooth/USB joysticks.  
 
 In this repository:  
-- The VR Samples project from Unity Technologies is beign modified for use with Gaze based interaction.  
-- The GoogleVR SDK is currently only used for the Instant Preview feature. This helps circumvent the requirement for making an editor emulator.  
+- The VR Samples project from Unity Technologies is modified  
+- Uses [Unity.GVR.InstantPreview](https://github.com/adrenak/Unity.GVR.InstantPreview) for helping test in the editor.  
+- Teleport using long trigger key press  
 
 # Soon  
 - Support for "walking" in VR using joystick or using gaze if controller is absent  
