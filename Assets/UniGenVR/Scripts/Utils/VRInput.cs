@@ -7,7 +7,11 @@ namespace UniGenVR.Utils {
     // This class must exist in every scene and so can be attached to the main
     // camera for ease.
     public class VRInput : MonoBehaviour {
-        //Swipe directions
+        static VRInput instance;
+        public static VRInput Instance {
+            get { return instance; }
+        }
+
         public enum SwipeDirection {
             NONE,
             UP,
@@ -15,11 +19,6 @@ namespace UniGenVR.Utils {
             LEFT,
             RIGHT
         };
-
-        [SerializeField] KeyCode m_TriggerKey;
-        [SerializeField] KeyCode m_CancelKey;
-        [SerializeField] float m_MaxHoldTime = 2;
-        [SerializeField] float m_MinHoldTime = .2F;
 
         public static event Action<SwipeDirection> OnSwipe;                // Called every frame passing in the swipe, including if there is no swipe.
         public static event Action<float> OnHold;
@@ -30,10 +29,13 @@ namespace UniGenVR.Utils {
         public static event Action OnDoubleClick;                          // Called when a double click is detected.
         public static event Action OnCancel;                               // Called when Cancel is pressed.
 
+        [SerializeField] KeyCode m_TriggerKey;
+        [SerializeField] KeyCode m_CancelKey;
 
-        [SerializeField] private float m_DoubleClickTime = 0.3f;    //The max time allowed between double clicks
-        [SerializeField] private float m_SwipeWidth = 0.3f;         //The width of a swipe
-
+        [SerializeField] float m_MaxHoldTime = 2;
+        [SerializeField] float m_MinHoldTime = .2F;
+        [SerializeField] float m_DoubleClickTime = 0.3f;
+        [SerializeField] float m_SwipeDistance = 0.3f;         //The width of a swipe
 
         private Vector2 m_MouseDownPosition;                        // The screen position of the mouse when Fire1 is pressed.
         private Vector2 m_MouseUpPosition;                          // The screen position of the mouse when Fire1 is released.
@@ -43,8 +45,18 @@ namespace UniGenVR.Utils {
         private float m_LastVerticalValue;                          // The previous value of the vertical axis used to detect keyboard swipes.
 
 
-        public float DoubleClickTime { get { return m_DoubleClickTime; } }
+        public static float DoubleClickInterval { get { return instance.m_DoubleClickTime; } }
+        public static float MaxHoldTime { get { return instance.m_MaxHoldTime; } }
+        public static float MinHoldTime { get { return instance.m_MinHoldTime; } }
+        public static float SwipeDistance { get { return instance.m_SwipeDistance; } }
 
+        private void Awake() {
+            var instances = FindObjectsOfType<VRInput>();
+            if (instances.Length > 1)
+                Destroy(gameObject);
+            else
+                instance = gameObject.GetComponent<VRInput>();
+        }
 
         private void Update() {
             CheckInput();
@@ -134,10 +146,10 @@ namespace UniGenVR.Utils {
             Vector2 swipeData = (m_MouseUpPosition - m_MouseDownPosition).normalized;
 
             // If the direction of the swipe has a small width it is vertical.
-            bool swipeIsVertical = Mathf.Abs(swipeData.x) < m_SwipeWidth;
+            bool swipeIsVertical = Mathf.Abs(swipeData.x) < m_SwipeDistance;
 
             // If the direction of the swipe has a small height it is horizontal.
-            bool swipeIsHorizontal = Mathf.Abs(swipeData.y) < m_SwipeWidth;
+            bool swipeIsHorizontal = Mathf.Abs(swipeData.y) < m_SwipeDistance;
 
             // If the swipe has a positive y component and is vertical the swipe is up.
             if (swipeData.y > 0f && swipeIsVertical)

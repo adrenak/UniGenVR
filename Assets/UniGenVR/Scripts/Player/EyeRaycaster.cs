@@ -1,7 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UniGenVR.Utils;
 using UniGenVR.Component;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace UniGenVR.Player {
     // In order to interact with objects in the scene
@@ -11,24 +14,28 @@ namespace UniGenVR.Player {
     public class EyeRaycaster : VRBehaviour {
         public event Action<RaycastHit> OnRaycasthit;                   // This event is called every frame that the user's gaze is over a collider.
 
-
         [SerializeField] private Transform m_Camera;
-        [SerializeField] private LayerMask m_ExclusionLayers;           // Layers to exclude from the raycast.
+        [SerializeField] private LayerMask m_ExcludedLayers;           // Layers to exclude from the raycast.
         [SerializeField] private bool m_ShowDebugRay;                   // Optionally show the debug ray.
-        [SerializeField] private float m_DebugRayLength = 5f;           // Debug ray length.
-        [SerializeField] private float m_DebugRayDuration = 1f;         // How long the Debug ray will remain visible.
         [SerializeField] private float m_RayLength = 500f;              // How far into the scene the ray is cast.
 
+        Interactable m_CurrentInteractible;                //The current interactive item
+        Interactable m_LastInteractible;                   //The last interactive item
 
-        private Interactable m_CurrentInteractible;                //The current interactive item
-        private Interactable m_LastInteractible;                   //The last interactive item
-
+        GraphicRaycaster m_GraphicRaycaster;
+        PointerEventData m_PointerEventData;
+        public Camera cam;
 
         // Utility for other classes to get the current interactive item
         public Interactable CurrentInteractible {
             get { return m_CurrentInteractible; }
         }
 
+        private void Start() {
+            m_GraphicRaycaster = GetComponent<GraphicRaycaster>();
+            m_PointerEventData = new PointerEventData(EventSystem.current);
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
 
         private void OnEnable() {
             VRInput.OnClick += HandleClick;
@@ -47,14 +54,13 @@ namespace UniGenVR.Player {
 
 
         private void Update() {
-            EyeRaycast();
+            Raycast3D();
         }
 
-
-        private void EyeRaycast() {
+        private void Raycast3D() {
             // Show the debug ray if required
             if (m_ShowDebugRay) {
-                Debug.DrawRay(m_Camera.position, m_Camera.forward * m_DebugRayLength, Color.blue, m_DebugRayDuration);
+                Debug.DrawRay(m_Camera.position, m_Camera.forward * m_RayLength, Color.blue, Time.deltaTime);
             }
 
             // Create a ray that points forwards from the camera.
@@ -62,7 +68,7 @@ namespace UniGenVR.Player {
             RaycastHit hit;
 
             // Do the raycast forweards to see if we hit an interactive item
-            if (Physics.Raycast(ray, out hit, m_RayLength, ~m_ExclusionLayers)) {
+            if (Physics.Raycast(ray, out hit, m_RayLength, ~m_ExcludedLayers)) {
                 Interactable interactible = hit.collider.GetComponent<Interactable>(); //attempt to get the Interactable on the hit object
                 m_CurrentInteractible = interactible;
 
@@ -72,7 +78,7 @@ namespace UniGenVR.Player {
 
                 // Deactive the last interactive item 
                 if (interactible != m_LastInteractible)
-                    DeactiveLastInteractible();
+                    DeactivateInteractable();
 
                 m_LastInteractible = interactible;
 
@@ -85,7 +91,7 @@ namespace UniGenVR.Player {
             }
             else {
                 // Nothing was hit, deactive the last interactive item.
-                DeactiveLastInteractible();
+                DeactivateInteractable();
                 m_CurrentInteractible = null;
 
                 // Position the reticle at default distance.
@@ -94,8 +100,7 @@ namespace UniGenVR.Player {
             }
         }
 
-
-        private void DeactiveLastInteractible() {
+        private void DeactivateInteractable() {
             if (m_LastInteractible == null)
                 return;
 

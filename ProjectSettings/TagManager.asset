@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - Ethan
-  - MazeWalls
-  - MazeTurret
-  - MazeTurretBullet
-  - Bg
-  - FPSWeapon
-  - Teleportable
+  - Walkable
+  - WorldUI
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UniGenVR.UI {
     // This class ensures that the UI (such as the reticle and selection bar)
     // are set up correctly.
-    public class CameraUI : VRBehaviour {
+    public class CameraUI : MonoBehaviour {
         [SerializeField] private Canvas m_Canvas;       // Reference to the canvas containing the UI.
 
 

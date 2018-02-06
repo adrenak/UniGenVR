@@ -15,57 +15,57 @@ namespace UniGenVR {
             }
         }
 
-        EyeRaycaster m_VREyeRaycaster;
+        EyeRaycaster m_EyeRaycaster;
         public EyeRaycaster eyeRaycaster {
             get {
-                if (m_VREyeRaycaster == null)
-                    m_VREyeRaycaster = GetComponent<EyeRaycaster>();
-                return m_VREyeRaycaster;
+                if (m_EyeRaycaster == null)
+                    m_EyeRaycaster = GetComponent<EyeRaycaster>();
+                return m_EyeRaycaster;
             }
         }
 
-        CameraUI m_VRCameraUI;
+        CameraUI m_CameraUI;
         public CameraUI cameraUI {
             get {
-                if (m_VRCameraUI == null)
-                    m_VRCameraUI = GetComponent<CameraUI>();
+                if (m_CameraUI == null)
+                    m_CameraUI = GetComponent<CameraUI>();
                 return cameraUI;
             }
         }
 
-        Reticle m_VRReticle;
+        Reticle m_Reticle;
         public Reticle reticle {
             get {
-                if (m_VRReticle == null)
-                    m_VRReticle = GetComponent<Reticle>();
-                return m_VRReticle;
+                if (m_Reticle == null)
+                    m_Reticle = GetComponent<Reticle>();
+                return m_Reticle;
             }
         }
 
-        ReticleRadial m_VRReticleRadial;
+        ReticleRadial m_ReticleRadial;
         public ReticleRadial reticleRadial {
             get {
-                if (m_VRReticleRadial == null)
-                    m_VRReticleRadial = GetComponent<ReticleRadial>();
-                return m_VRReticleRadial;
+                if (m_ReticleRadial == null)
+                    m_ReticleRadial = GetComponent<ReticleRadial>();
+                return m_ReticleRadial;
             }
         }
 
-        CameraFader m_VRCameraFade;
-        public CameraFader vrCameraFade {
+        CameraFader m_CameraFade;
+        public CameraFader cameraFade {
             get {
-                if (m_VRCameraFade == null)
-                    m_VRCameraFade = GetComponent<CameraFader>();
-                return m_VRCameraFade;
+                if (m_CameraFade == null)
+                    m_CameraFade = GetComponent<CameraFader>();
+                return m_CameraFade;
             }
         }
 
-        PlayerEntity m_PlayerEntiry;
+        PlayerEntity m_PlayerEntity;
         public PlayerEntity playerEntity {
             get {
-                if (m_PlayerEntiry == null)
-                    m_PlayerEntiry = GetComponent<PlayerEntity>();
-                return m_PlayerEntiry;
+                if (m_PlayerEntity == null)
+                    m_PlayerEntity = GetComponent<PlayerEntity>();
+                return m_PlayerEntity;
             }
         }
     }

@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UniPrep.Utils;
 using UniGenVR.Utils;
-using UniGenVR.Player;
+using System.Collections;
 
 namespace UniGenVR.Player {
     public class Teleporter : VRBehaviour {
-        public LayerMask m_LayerMask;
-        public float m_TeleportDistance = 5;
-        bool didHitOnClick;
+        public LayerMask layerMask;
+        public float teleportDistance = 5;
+        public float fadeDuration = .33f;
+
+        bool m_DidHitOnClick;
 
         private void OnEnable() {
             VRInput.OnDown += HandleDown;
@@ -22,8 +25,8 @@ namespace UniGenVR.Player {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, m_TeleportDistance, m_LayerMask)) {
-                didHitOnClick = true;
+            if (Physics.Raycast(ray, out hit, teleportDistance, layerMask)) {
+                m_DidHitOnClick = true;
                 pHit = hit;
                 return true;
             }
@@ -33,21 +36,27 @@ namespace UniGenVR.Player {
 
         private void HandleDown() {
             RaycastHit? hit;
-            didHitOnClick = CheckRaycast(out hit);
+            m_DidHitOnClick = CheckRaycast(out hit);
         }
 
         private void HandleMaxHold() {
-            if (!didHitOnClick)
+            if (!m_DidHitOnClick)
                 return;
 
             RaycastHit? hit;
-            didHitOnClick = CheckRaycast(out hit);
+            m_DidHitOnClick = CheckRaycast(out hit);
             Vector3 hitPoint = ((RaycastHit)hit).point;
-            transform.position = new Vector3(
-                hitPoint.x,
-                hitPoint.y + playerEntity.height,
-                hitPoint.z
-                );
+
+            Work fadeOutWork = new Work(cameraFade.BeginFadeOut(fadeDuration));
+            fadeOutWork.Begin(() => {
+                transform.position = new Vector3(
+                    hitPoint.x,
+                    hitPoint.y + playerEntity.height,
+                    hitPoint.z
+                    );
+                Work fadeInWork = new Work(cameraFade.BeginFadeIn(fadeDuration));
+                fadeInWork.Begin();
+            });
         }
     }
 }

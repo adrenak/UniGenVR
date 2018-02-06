@@ -9,16 +9,9 @@ namespace UniGenVR.Utils {
     // coroutine which returns once the bar is filled.
     public class ReticleRadial : VRBehaviour {
         public event Action OnSelectionComplete;                                                // This event is triggered when the bar has filled.
-
-
         [SerializeField] private bool m_HideOnStart = true;                                     // Whether or not the bar should be visible at the start.
         [SerializeField] private Image m_Selection;                                             // Reference to the image who's fill amount is adjusted to display the bar.
-
-
-        private Coroutine m_SelectionFillRoutine;                                               // Used to start and stop the filling coroutine based on input.
         private bool m_IsSelectionRadialActive;                                                    // Whether or not the bar is currently useable.
-        private bool m_RadialFilled;                                                               // Used to allow the coroutine to wait for the bar to fill.
-
 
         private void OnEnable() {
             VRInput.OnHold += HandleHold;
@@ -26,7 +19,6 @@ namespace UniGenVR.Utils {
             VRInput.OnMaxHold += HandleMaxHold;
             VRInput.OnDown += HandleDown;
         }
-
 
         private void OnDisable() {
             VRInput.OnHold -= HandleHold;
@@ -43,12 +35,10 @@ namespace UniGenVR.Utils {
                 Hide();
         }
 
-
         public void Show() {
             m_Selection.gameObject.SetActive(true);
             m_IsSelectionRadialActive = true;
         }
-
 
         public void Hide() {
             m_Selection.gameObject.SetActive(false);

@@ -1,52 +1,46 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace UniGenVR.Utils
-{
+namespace UniGenVR.Utils {
     // This is a simple object pooling script that
     // allows for random variation in prefabs.
-    public class ObjectPool : MonoBehaviour
-    {
+    public class ObjectPool : MonoBehaviour {
         [SerializeField] private GameObject[] m_Prefabs;            // These are prefabs which are all variations of the same (for example various asteroids).
         [SerializeField] private int m_NumberInPool;                // The number of prefabs to be initially instanced for the pool.
 
 
-        private List<GameObject> m_Pool = new List<GameObject> ();  // The list of instantiated prefabs making up the pool.
+        private List<GameObject> m_Pool = new List<GameObject>();  // The list of instantiated prefabs making up the pool.
 
 
-        private void Awake ()
-        {
+        private void Awake() {
             // Add as many random variations to the pool as initially determined.
-            for (int i = 0; i < m_NumberInPool; i++)
-            {
-                AddToPool ();
+            for (int i = 0; i < m_NumberInPool; i++) {
+                AddToPool();
             }
         }
 
 
-        private void AddToPool ()
-        {
+        private void AddToPool() {
             // Select a random prefab.
-            int randomIndex = Random.Range (0, m_Prefabs.Length);
+            int randomIndex = Random.Range(0, m_Prefabs.Length);
 
             // Instantiate the prefab.
             GameObject instance = Instantiate(m_Prefabs[randomIndex]);
 
             // Make the instance a child of this pool and turn it off.
             instance.transform.parent = transform;
-            instance.SetActive (false);
+            instance.SetActive(false);
 
             // Add the instance to the pool for later use.
-            m_Pool.Add (instance);
+            m_Pool.Add(instance);
         }
 
 
-        public GameObject GetGameObjectFromPool ()
-        {
+        public GameObject GetGameObjectFromPool() {
             // If there aren't any instances left in the pool, add one.
             if (m_Pool.Count == 0)
-                AddToPool ();
-            
+                AddToPool();
+
             // Get a reference to the first gameobject in the pool.
             GameObject ret = m_Pool[0];
 
@@ -54,7 +48,7 @@ namespace UniGenVR.Utils
             m_Pool.RemoveAt(0);
 
             // Activate the instance.
-            ret.SetActive (true);
+            ret.SetActive(true);
 
             // Put it in the root of the hierarchy.
             ret.transform.parent = null;
@@ -64,13 +58,12 @@ namespace UniGenVR.Utils
         }
 
 
-        public void ReturnGameObjectToPool (GameObject go)
-        {
+        public void ReturnGameObjectToPool(GameObject go) {
             // Add the gameobject to the pool list.
-            m_Pool.Add (go);
+            m_Pool.Add(go);
 
             // Deactivate the gameobject and make it a child of the pool.
-            go.SetActive (false);
+            go.SetActive(false);
             go.transform.parent = transform;
         }
     }
