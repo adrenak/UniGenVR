@@ -89,7 +89,6 @@ namespace UniGenVR.UI {
             // Reset stuff
             m_Timer = 0;
             m_Hold = false;
-            m_GazeOver = false;
             SetSliderValue(0);
         }
                 

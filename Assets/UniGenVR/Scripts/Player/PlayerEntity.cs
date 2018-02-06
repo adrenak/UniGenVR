@@ -8,10 +8,14 @@ namespace UniGenVR.Player {
 
         private void Update() {
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity, m_WalkableLayer)) {
+            if(Physics.Raycast(transform.position, new Vector3(0, -1, 0), out hit, Mathf.Infinity, m_WalkableLayer)) {
                 transform.position = new Vector3(
                     transform.position.x,
-                    Mathf.Lerp(transform.position.y, height, Time.deltaTime * Time.timeScale * m_Smoothness),
+                    Mathf.Lerp(
+                        transform.position.y, 
+                        hit.point.y + height,
+                        Time.deltaTime * Time.timeScale * m_Smoothness
+                    ),
                     transform.position.z
                 );
             }

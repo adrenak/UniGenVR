@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UniPrep.Utils;
 using UniGenVR.Utils;
-using System.Collections;
 
 namespace UniGenVR.Player {
     public class Teleporter : VRBehaviour {
-        public LayerMask layerMask;
+        // always include UI layer
+        public LayerMask teleportableLayers;
         public float teleportDistance = 5;
         public float fadeDuration = .33f;
 
@@ -16,7 +16,7 @@ namespace UniGenVR.Player {
             VRInput.OnMaxHold += HandleMaxHold;
         }
 
-        private void OnDIsable() {
+        private void OnDisable() {
             VRInput.OnClick -= HandleDown;
             VRInput.OnMaxHold -= HandleMaxHold;
         }
@@ -25,10 +25,15 @@ namespace UniGenVR.Player {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, teleportDistance, layerMask)) {
+            if (Physics.Raycast(ray, out hit, teleportDistance, teleportableLayers)) {
                 m_DidHitOnClick = true;
                 pHit = hit;
-                return true;
+
+                // Never consider UI layer
+                if (hit.collider.gameObject.layer != 5)
+                    return true;
+                else
+                    return false;
             }
             pHit = null;
             return false;
@@ -40,11 +45,14 @@ namespace UniGenVR.Player {
         }
 
         private void HandleMaxHold() {
-            if (!m_DidHitOnClick)
+            if (!m_DidHitOnClick) {
+                m_DidHitOnClick = false;
                 return;
+            }
 
             RaycastHit? hit;
-            m_DidHitOnClick = CheckRaycast(out hit);
+            if (!CheckRaycast(out hit))
+                return;
             Vector3 hitPoint = ((RaycastHit)hit).point;
 
             Work fadeOutWork = new Work(cameraFade.BeginFadeOut(fadeDuration));

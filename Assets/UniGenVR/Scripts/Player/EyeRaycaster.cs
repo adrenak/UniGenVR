@@ -22,21 +22,11 @@ namespace UniGenVR.Player {
         Interactable m_CurrentInteractible;                //The current interactive item
         Interactable m_LastInteractible;                   //The last interactive item
 
-        GraphicRaycaster m_GraphicRaycaster;
-        PointerEventData m_PointerEventData;
-        public Camera cam;
-
         // Utility for other classes to get the current interactive item
         public Interactable CurrentInteractible {
             get { return m_CurrentInteractible; }
         }
-
-        private void Start() {
-            m_GraphicRaycaster = GetComponent<GraphicRaycaster>();
-            m_PointerEventData = new PointerEventData(EventSystem.current);
-            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        }
-
+        
         private void OnEnable() {
             VRInput.OnClick += HandleClick;
             VRInput.OnDoubleClick += HandleDoubleClick;
