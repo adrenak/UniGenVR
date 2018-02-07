@@ -33,14 +33,17 @@ namespace UniGenVR.Player {
             m_OriginalRotation = m_ReticleTransform.localRotation;
         }
 
+        public void Set(bool flag) {
+            m_Image.enabled = flag;
+        }
 
         public void Hide() {
-            m_Image.enabled = false;
+            Set(false);
         }
 
 
         public void Show() {
-            m_Image.enabled = true;
+            Set(true);
         }
 
 

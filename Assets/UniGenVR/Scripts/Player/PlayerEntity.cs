@@ -2,9 +2,11 @@
 
 namespace UniGenVR.Player {
     public class PlayerEntity : VRBehaviour {
-        public LayerMask m_WalkableLayer;
-        public float height;
-        public float m_Smoothness = 1;
+        [SerializeField] LayerMask m_WalkableLayer;
+        [SerializeField] float m_Height;
+        [SerializeField] float m_BlendSpeed = 1;
+
+        public float Height { get { return m_Height; } }
 
         private void Update() {
             RaycastHit hit;
@@ -13,8 +15,8 @@ namespace UniGenVR.Player {
                     transform.position.x,
                     Mathf.Lerp(
                         transform.position.y, 
-                        hit.point.y + height,
-                        Time.deltaTime * Time.timeScale * m_Smoothness
+                        hit.point.y + m_Height,
+                        Time.deltaTime * Time.timeScale * m_BlendSpeed
                     ),
                     transform.position.z
                 );

@@ -9,19 +9,19 @@ namespace UniGenVR.UI {
     [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(AudioSource))]
     public class SelectionSlider : VRBehaviour {
-        public event Action OnSliderFilled;                                    // This event is triggered when the bar finishes filling.
+        public event Action OnSliderFilled;
 
-        [SerializeField] bool m_DisableOnBarFill;                   // Whether the bar should stop reacting once it's been filled (for single use bars).
-        [SerializeField] AudioClip m_OnOverClip;                    // The clip to play when the user looks at the bar.
-        [SerializeField] AudioClip m_OnFilledClip;                  // The clip to play when the bar finishes filling.
+        [SerializeField] bool m_DisableOnBarFill;
+        [SerializeField] AudioClip m_OnOverClip;
+        [SerializeField] AudioClip m_OnOutClip;
+        [SerializeField] AudioClip m_OnFilledClip;
 
         Slider m_Slider;
         UIFader m_UIFader;
         Collider m_Collider;
         AudioSource m_Audio;
 
-        bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
-        bool m_Hold;
+        bool m_Fill;
         float m_Timer;
        
         private void Start() {
@@ -32,32 +32,27 @@ namespace UniGenVR.UI {
         }
 
         private void OnEnable() {
-            VRInput.OnUp += HandleUp;
-            VRInput.OnDown += HandleDown;
-
             interactable.OnOver += HandleOver;
             interactable.OnOut += HandleOut;
+            interactable.OnDown += HandleDown;
+            interactable.OnUp += HandleUp;
         }
-
-        private void HandleDown() {
-            m_Hold = true;
-        }
-
+        
         private void OnDisable() {
-            VRInput.OnUp -= HandleUp;
-            VRInput.OnDown -= HandleDown;
-
             interactable.OnOver -= HandleOver;
             interactable.OnOut -= HandleOut;
+            interactable.OnDown -= HandleDown;
+            interactable.OnUp -= HandleUp;
         }
 
         private void Update() {
+            // TODO: This has bugs
             // If this bar is using a UIFader turn off the collider when it's invisible.
-            if (m_UIFader && m_Collider)
+            if (m_UIFader)
                 m_Collider.enabled = m_UIFader.Visible;
 
             // Update timer
-            if (m_GazeOver && m_Hold)
+            if (m_Fill)
                 m_Timer += Time.deltaTime;
             else
                 m_Timer = 0;
@@ -78,34 +73,38 @@ namespace UniGenVR.UI {
                 OnSliderFilled();
 
             // Play the clip for when the bar is filled.
-            m_Audio.clip = m_OnFilledClip;
-            m_Audio.Play();
-
+            TryPlayAudioClip(m_OnFilledClip);
 
             // If the bar should be disabled once it is filled, do so now.
-            if (m_DisableOnBarFill)
-                enabled = false;
+            if (m_DisableOnBarFill) enabled = false;
 
             // Reset stuff
             m_Timer = 0;
-            m_Hold = false;
+            m_Fill = false;
             SetSliderValue(0);
         }
                 
         private void HandleUp() {
-            m_Hold = false;
+            m_Fill = false;
         }
         
+        private void HandleDown() {
+            m_Fill = true;
+        }
+
         private void HandleOver() {
-            m_GazeOver = true;
-            m_Audio.clip = m_OnOverClip;
-            m_Audio.Play();
+            TryPlayAudioClip(m_OnOverClip);
         }
         
         private void HandleOut() {
-            m_GazeOver = false;
+            m_Fill = false;
+            TryPlayAudioClip(m_OnOutClip);
+        }
 
-            SetSliderValue(0f);
+        void TryPlayAudioClip(AudioClip clip) {
+            if (clip == null) return;
+            m_Audio.clip = clip;
+            m_Audio.Play();
         }
     }
 }
