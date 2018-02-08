@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UniPrep.Utils;
 using UniGenVR.Utils;
+using UniPrep.Extensions;
 
 namespace UniGenVR.Player {
     public class Teleporter : VRBehaviour {
-        // always include UI layer
+        public LayerMask blockingLayers;
         public LayerMask teleportableLayers;
         public float teleportDistance = 5;
         public float fadeDuration = .33f;
@@ -36,7 +37,7 @@ namespace UniGenVR.Player {
             RaycastHit? hit;
             var hitting = PerformRaycast(out hit);
             m_Marker.Set(hitting);
-            reticle.Set(hitting);
+            reticle.Set(!hitting);
 
             if (hitting){
                 var sureHit = (RaycastHit)hit;
@@ -49,16 +50,12 @@ namespace UniGenVR.Player {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit internalHit;
 
-            if (Physics.Raycast(ray, out internalHit, teleportDistance, teleportableLayers)) {
-                m_DidHitOnClick = true;
-                outputHit = internalHit;
-
-                // TODO: Make a second layer mask for this
-                // Never consider UI layer
-                if (internalHit.collider.gameObject.layer != 5)
+            if (Physics.Raycast(ray, out internalHit, teleportDistance, blockingLayers)) {
+                int hitLayer = internalHit.collider.gameObject.layer;
+                if (teleportableLayers.Contains(hitLayer)) {
+                    outputHit = internalHit;
                     return true;
-                else
-                    return false;
+                }
             }
             outputHit = null;
             return false;

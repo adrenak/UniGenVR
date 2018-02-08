@@ -55,7 +55,7 @@ namespace UniPrep.Utils {
             yield return new WaitForSeconds(delayDuration);
             yield break;
         }
-        
+
         public new string ToString() {
             return new StringBuilder()
                 .Append("Job ID : ").Append(m_ID.ToString())

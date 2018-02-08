@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace UniGenVR.UI {
+namespace UniGenVR.Player {
     // This class is used to fade the entire screen to black (or
     // any chosen colour).  It should be used to smooth out the
     // transition between scenes or restarting of a scene.

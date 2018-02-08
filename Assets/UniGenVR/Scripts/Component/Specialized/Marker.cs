@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Marker : MonoBehaviour {
     [SerializeField] float m_RotationSpeed;
@@ -10,12 +8,15 @@ public class Marker : MonoBehaviour {
 
     Renderer m_Renderer;
 
+    private void Awake() {
+        m_Renderer = GetComponent<Renderer>();
+    }
+
     public void Set(bool flag) {
         m_Renderer.enabled = flag;
     }
 
     void Update() {
-        m_Renderer = GetComponent<Renderer>();
         Rotate();
         Scale();
     }

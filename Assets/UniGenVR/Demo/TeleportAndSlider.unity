@@ -1005,6 +1005,16 @@ Prefab:
       propertyPath: m_Height
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 114605231627858780, guid: 5d917b8600d10944b8eae83f88b5e0d2,
+        type: 2}
+      propertyPath: blockingLayers.m_Bits
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605231627858780, guid: 5d917b8600d10944b8eae83f88b5e0d2,
+        type: 2}
+      propertyPath: teleportableLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d917b8600d10944b8eae83f88b5e0d2, type: 2}
   m_IsPrefabParent: 0

@@ -34,7 +34,7 @@ namespace UniGenVR.Player {
         }
 
         public void Set(bool flag) {
-            m_Image.enabled = flag;
+            m_Image.gameObject.SetActive(flag);
         }
 
         public void Hide() {

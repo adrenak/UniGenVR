@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using UnityEngine.Events;
 
 namespace UniGenVR.Component {
     // This class should be added to any gameobject in the scene
@@ -14,6 +14,12 @@ namespace UniGenVR.Component {
         public event Action OnUp;               // Called when Fire1 is released whilst the gaze is over this object.
         public event Action OnDown;             // Called when Fire1 is pressed whilst the gaze is over this object.
 
+        public UnityEvent OnOverUnityEvent;
+        public UnityEvent OnOutUnityEvent;
+        public UnityEvent OnClickUnityEvent;
+        public UnityEvent OnDoubleClickUnityEvent;
+        public UnityEvent OnUpUnityEvent;
+        public UnityEvent OnDownUnityEvent;
 
         protected bool m_IsOver;
 
@@ -30,6 +36,8 @@ namespace UniGenVR.Component {
 
             if (OnOver != null)
                 OnOver();
+            if (OnOverUnityEvent != null)
+                OnOverUnityEvent.Invoke();
         }
 
 
@@ -38,30 +46,40 @@ namespace UniGenVR.Component {
 
             if (OnOut != null)
                 OnOut();
+            if (OnOutUnityEvent != null)
+                OnOutUnityEvent.Invoke();
         }
 
 
         public void Click() {
             if (OnClick != null)
                 OnClick();
+            if (OnClickUnityEvent != null)
+                OnClickUnityEvent.Invoke();
         }
 
 
         public void DoubleClick() {
             if (OnDoubleClick != null)
                 OnDoubleClick();
+            if (OnDoubleClickUnityEvent != null)
+                OnDoubleClickUnityEvent.Invoke();
         }
 
 
         public void Up() {
             if (OnUp != null)
                 OnUp();
+            if (OnUpUnityEvent != null)
+                OnUpUnityEvent.Invoke();
         }
 
 
         public void Down() {
             if (OnDown != null)
                 OnDown();
+            if (OnDownUnityEvent != null)
+                OnDownUnityEvent.Invoke();
         }
     }
 }

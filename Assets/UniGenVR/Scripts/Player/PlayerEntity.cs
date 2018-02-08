@@ -3,8 +3,8 @@
 namespace UniGenVR.Player {
     public class PlayerEntity : VRBehaviour {
         [SerializeField] LayerMask m_WalkableLayer;
-        [SerializeField] float m_Height;
-        [SerializeField] float m_BlendSpeed = 1;
+        [SerializeField] float m_Height = 1.7f;
+        [SerializeField] float m_BlendSpeed = 10;
 
         public float Height { get { return m_Height; } }
 

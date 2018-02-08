@@ -6,7 +6,7 @@ namespace UniGenVR.UI {
     // generally useful when using VR, specifically looking at
     // the camera and rotating so they're always in front of
     // the camera.
-    public class CameraAnchoredObject : MonoBehaviour {
+    public class BoundTransform : MonoBehaviour {
         [SerializeField] Transform m_CameraTransform;
         [SerializeField] float m_FollowSpeed = 2;
 

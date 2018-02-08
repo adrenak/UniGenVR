@@ -2,7 +2,7 @@
 
 namespace UniGenVR.UI {
     [ExecuteInEditMode]
-    public class SelectionbSliderEditortime : MonoBehaviour {
+    public class SelectionSliderEditortime : MonoBehaviour {
         BoxCollider m_BoxCollider;
         RectTransform m_RectTransform;
 
