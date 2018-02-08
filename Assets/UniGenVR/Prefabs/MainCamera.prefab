@@ -283,11 +283,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1187cfeccc01858478e86a4c4455a407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportableLayers:
+  blockingLayers:
     serializedVersion: 2
     m_Bits: 288
+  teleportableLayers:
+    serializedVersion: 2
+    m_Bits: 256
   teleportDistance: 5
   fadeDuration: 0.3
+  markerPrefab: {fileID: 1279989835839168, guid: 96cb668238244fc4aa423f79b0cd475c,
+    type: 2}
 --- !u!114 &114639872602832158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,11 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c1b4958a3dd2a4da08d3b6995786a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WalkableLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  height: 1.7
-  m_Smoothness: 1
+  m_Height: 1.7
+  m_BlendSpeed: 10
 --- !u!114 &114651105163423570
 MonoBehaviour:
   m_ObjectHideFlags: 1

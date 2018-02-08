@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e6020b770fadd4588bf7bd3c19bbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutputResolution: 0
+  OutputResolution: 1
   MultisampleCount: 0
-  BitRate: 3
+  BitRate: 5
   InstallApkOnRun: 1
   InstantPreviewApk: {fileID: 102900000, guid: db68f0490f228a64fb62dc9d2f510d08, type: 3}
