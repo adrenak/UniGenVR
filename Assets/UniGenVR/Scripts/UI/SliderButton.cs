@@ -8,7 +8,7 @@ namespace UniGenVR.UI {
     [RequireComponent(typeof(Interactable))]
     [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(AudioSource))]
-    public class SelectionSlider : VRBehaviour {
+    public class SliderButton : VRBehaviour {
         public event Action OnSliderFilled;
 
         [SerializeField] bool m_DisableOnBarFill;
