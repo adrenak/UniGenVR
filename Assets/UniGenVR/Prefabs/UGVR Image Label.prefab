@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224439772733774338}
   - component: {fileID: 223857055704892258}
   - component: {fileID: 114351866913701746}
+  - component: {fileID: 114698608945662166}
   - component: {fileID: 114605324281785360}
   - component: {fileID: 65569023168352922}
   - component: {fileID: 225411264742628474}
@@ -211,6 +212,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114698608945662166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495379420372240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d666c2efe52ab4ebded8ed9820d243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 114182561772511666}
+  text: {fileID: 114094920761813284}
 --- !u!222 &222285095320137532
 CanvasRenderer:
   m_ObjectHideFlags: 1

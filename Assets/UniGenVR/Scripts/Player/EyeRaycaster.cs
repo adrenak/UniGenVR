@@ -14,7 +14,6 @@ namespace UniGenVR.Player {
     public class EyeRaycaster : VRBehaviour {
         public event Action<RaycastHit> OnRaycasthit;                   // This event is called every frame that the user's gaze is over a collider.
 
-        [SerializeField] private Transform m_Camera;
         [SerializeField] private LayerMask m_ExcludedLayers;           // Layers to exclude from the raycast.
         [SerializeField] private bool m_ShowDebugRay;                   // Optionally show the debug ray.
         [SerializeField] private float m_RayLength = 500f;              // How far into the scene the ray is cast.
@@ -50,11 +49,11 @@ namespace UniGenVR.Player {
         private void Raycast3D() {
             // Show the debug ray if required
             if (m_ShowDebugRay) {
-                Debug.DrawRay(m_Camera.position, m_Camera.forward * m_RayLength, Color.blue, Time.deltaTime);
+                Debug.DrawRay(transform.position, transform.forward * m_RayLength, Color.blue, Time.deltaTime);
             }
 
             // Create a ray that points forwards from the camera.
-            Ray ray = new Ray(m_Camera.position, m_Camera.forward);
+            Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
             // Do the raycast forweards to see if we hit an interactive item

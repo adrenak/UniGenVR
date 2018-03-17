@@ -42,11 +42,11 @@ namespace UniGenVR {
             }
         }
 
-        ReticleRadial m_ReticleRadial;
-        public ReticleRadial reticleRadial {
+        Radial m_ReticleRadial;
+        public Radial reticleRadial {
             get {
                 if (m_ReticleRadial == null)
-                    m_ReticleRadial = GetComponent<ReticleRadial>();
+                    m_ReticleRadial = GetComponent<Radial>();
                 return m_ReticleRadial;
             }
         }

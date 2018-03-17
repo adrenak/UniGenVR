@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3138a0d76dfdea846a0a250e0c262f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: {fileID: 11463088}
   m_DisableOnBarFill: 0
   m_OnOverClip: {fileID: 8300000, guid: b241e9ef9617bd8419cc57321b92572f, type: 3}
   m_OnOutClip: {fileID: 8300000, guid: 12761ee95124c6e4f84ae94903a24b94, type: 3}

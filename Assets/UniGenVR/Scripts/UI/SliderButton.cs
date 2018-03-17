@@ -11,6 +11,7 @@ namespace UniGenVR.UI {
     public class SliderButton : VRBehaviour {
         public event Action OnSliderFilled;
 
+        [SerializeField] Text label;
         [SerializeField] bool m_DisableOnBarFill;
         [SerializeField] AudioClip m_OnOverClip;
         [SerializeField] AudioClip m_OnOutClip;
@@ -24,6 +25,10 @@ namespace UniGenVR.UI {
         bool m_Fill;
         float m_Timer;
        
+        public void SetText(string text) {
+            label.text = text;
+        }
+
         private void Start() {
             m_Audio = GetComponent<AudioSource>();
             m_Slider = transform.GetChild(0).GetComponent<Slider>();

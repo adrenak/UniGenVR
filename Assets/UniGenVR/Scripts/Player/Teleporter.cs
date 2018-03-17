@@ -10,6 +10,8 @@ namespace UniGenVR.Player {
         public float teleportDistance = 5;
         public float fadeDuration = .33f;
         public GameObject markerPrefab;
+        public Reticle m_Reticle;
+        public Transform m_ParentTransform;
 
         bool m_DidHitOnClick;
         Marker m_Marker;
@@ -37,7 +39,7 @@ namespace UniGenVR.Player {
             RaycastHit? hit;
             var hitting = PerformRaycast(out hit);
             m_Marker.Set(hitting);
-            reticle.Set(!hitting);
+            m_Reticle.Set(!hitting);
 
             if (hitting){
                 var sureHit = (RaycastHit)hit;
@@ -79,7 +81,7 @@ namespace UniGenVR.Player {
 
             Work fadeOutWork = new Work(cameraFade.BeginFadeOut(fadeDuration));
             fadeOutWork.Begin(() => {
-                transform.position = new Vector3(
+                m_ParentTransform.position = new Vector3(
                     hitPoint.x,
                     hitPoint.y + playerEntity.Height,
                     hitPoint.z

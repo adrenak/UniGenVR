@@ -7,7 +7,7 @@ namespace UniGenVR.Utils {
     // up as the user holds down the Fire1 button.  When it has
     // finished filling it triggers an event.  It also has a
     // coroutine which returns once the bar is filled.
-    public class ReticleRadial : VRBehaviour {
+    public class Radial : VRBehaviour {
         public event Action OnSelectionComplete;                                                // This event is triggered when the bar has filled.
         [SerializeField] private bool m_HideOnStart = true;                                     // Whether or not the bar should be visible at the start.
         [SerializeField] private Image m_Selection;                                             // Reference to the image who's fill amount is adjusted to display the bar.

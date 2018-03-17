@@ -9,11 +9,9 @@ namespace UniGenVR.Player {
     public class Reticle : MonoBehaviour {
         [SerializeField] private float m_DefaultDistance = 5f;      // The default distance away from the camera the reticle is placed.
         [SerializeField] private bool m_UseNormal;                  // Whether the reticle should be placed parallel to a surface.
-        [SerializeField] private Image m_Image;                     // Reference to the image component that represents the reticle.
         [SerializeField] private Transform m_ReticleTransform;      // We need to affect the reticle's transform.
-        [SerializeField] private Transform m_Camera;                // The reticle is always placed relative to the camera.
 
-
+        private Image m_Image;                     // Reference to the image component that represents the reticle.
         private Vector3 m_OriginalScale;                            // Since the scale of the reticle changes, the original scale needs to be stored.
         private Quaternion m_OriginalRotation;                      // Used to store the original rotation of the reticle.
 
@@ -31,6 +29,8 @@ namespace UniGenVR.Player {
             // Store the original scale and rotation.
             m_OriginalScale = m_ReticleTransform.localScale;
             m_OriginalRotation = m_ReticleTransform.localRotation;
+
+            m_Image = m_ReticleTransform.GetComponent<Image>();
         }
 
         public void Set(bool flag) {
@@ -41,16 +41,14 @@ namespace UniGenVR.Player {
             Set(false);
         }
 
-
         public void Show() {
             Set(true);
         }
 
-
         // This overload of SetPosition is used when the the VREyeRaycaster hasn't hit anything.
         public void SetPosition() {
             // Set the position of the reticle to the default distance in front of the camera.
-            m_ReticleTransform.position = m_Camera.position + m_Camera.forward * m_DefaultDistance;
+            m_ReticleTransform.position = transform.position + transform.forward * m_DefaultDistance;
 
             // Set the scale based on the original and the distance from the camera.
             m_ReticleTransform.localScale = m_OriginalScale * m_DefaultDistance;
@@ -58,7 +56,6 @@ namespace UniGenVR.Player {
             // The rotation should just be the default.
             m_ReticleTransform.localRotation = m_OriginalRotation;
         }
-
 
         // This overload of SetPosition is used when the VREyeRaycaster has hit something.
         public void SetPosition(RaycastHit hit) {

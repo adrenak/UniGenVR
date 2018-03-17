@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114697604963490976}
   - component: {fileID: 222696657741911640}
   - component: {fileID: 114234414423539276}
+  - component: {fileID: 114506451806268146}
   m_Layer: 5
   m_Name: UGVR Image
   m_TagString: Untagged
@@ -73,6 +74,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114506451806268146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995701708692048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1e80fc1a8c1bb47b543ab85abdf803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 114234414423539276}
 --- !u!114 &114600185039116056
 MonoBehaviour:
   m_ObjectHideFlags: 1
