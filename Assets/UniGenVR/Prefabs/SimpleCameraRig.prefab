@@ -248,7 +248,6 @@ MonoBehaviour:
   fadeDuration: 0.3
   markerPrefab: {fileID: 1279989835839168, guid: 96cb668238244fc4aa423f79b0cd475c,
     type: 2}
-  m_Reticle: {fileID: 114715048080597040}
   m_ParentTransform: {fileID: 4562339484849194}
 --- !u!114 &114378055281209754
 MonoBehaviour:
