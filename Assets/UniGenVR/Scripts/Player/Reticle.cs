@@ -3,29 +3,34 @@ using UnityEngine.UI;
 
 namespace UniGenVR.Player {
     // The reticle is a small point at the centre of the screen.
-    // It is used as a visual aid for aiming. The position of the
-    // reticle is either at a default position in space or on the
-    // surface of a VRInteractiveItem as determined by the VREyeRaycaster.
+    // It is used as a visual aid for aiming.
     public class Reticle : MonoBehaviour {
-        [SerializeField] private float m_DefaultDistance = 5f;      // The default distance away from the camera the reticle is placed.
-        [SerializeField] private bool m_UseNormal;                  // Whether the reticle should be placed parallel to a surface.
-        [SerializeField] private Transform m_ReticleTransform;      // We need to affect the reticle's transform.
+        // The default distance away from the camera the reticle is placed.
+        [SerializeField] float m_DefaultDistance = 5f;
 
-        private Image m_Image;                     // Reference to the image component that represents the reticle.
-        private Vector3 m_OriginalScale;                            // Since the scale of the reticle changes, the original scale needs to be stored.
-        private Quaternion m_OriginalRotation;                      // Used to store the original rotation of the reticle.
+        // Whether the reticle should be placed parallel to a surface.
+        [SerializeField] bool m_UseNormal;
 
+        // We need to affect the reticle's transform.
+        [SerializeField] Transform m_ReticleTransform;
+
+        // Reference to the image component that represents the reticle.
+        Image m_Image;
+
+        // Since the scale of the reticle changes, the original scale needs to be stored.
+        Vector3 m_OriginalScale;
+
+        // Used to store the original rotation of the reticle.
+        Quaternion m_OriginalRotation;
 
         public bool UseNormal {
             get { return m_UseNormal; }
             set { m_UseNormal = value; }
         }
 
-
         public Transform ReticleTransform { get { return m_ReticleTransform; } }
-
-
-        private void Awake() {
+        
+        void Awake() {
             // Store the original scale and rotation.
             m_OriginalScale = m_ReticleTransform.localScale;
             m_OriginalRotation = m_ReticleTransform.localRotation;
@@ -45,8 +50,7 @@ namespace UniGenVR.Player {
             Set(true);
         }
 
-        // This overload of SetPosition is used when the the VREyeRaycaster hasn't hit anything.
-        public void SetPosition() {
+        public void ResetPosition() {
             // Set the position of the reticle to the default distance in front of the camera.
             m_ReticleTransform.position = transform.position + transform.forward * m_DefaultDistance;
 
@@ -57,14 +61,13 @@ namespace UniGenVR.Player {
             m_ReticleTransform.localRotation = m_OriginalRotation;
         }
 
-        // This overload of SetPosition is used when the VREyeRaycaster has hit something.
         public void SetPosition(RaycastHit hit) {
             m_ReticleTransform.position = hit.point;
             m_ReticleTransform.localScale = m_OriginalScale * hit.distance;
 
             // If the reticle should use the normal of what has been hit...
             if (m_UseNormal)
-                // ... set it's rotation based on it's forward vector facing along the normal.
+                // Set it's rotation based on it's forward vector facing along the normal.
                 m_ReticleTransform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
             else
                 // However if it isn't using the normal then it's local rotation should be as it was originally.

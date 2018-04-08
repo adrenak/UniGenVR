@@ -2,7 +2,7 @@
 
 namespace UniGenVR.UI {
     [ExecuteInEditMode]
-    public class BoxColliderEnvelopeEditortime : MonoBehaviour {
+    public class BoxColliderReshaperEditortime : MonoBehaviour {
         BoxCollider m_BoxCollider;
         RectTransform m_RectTransform;
 

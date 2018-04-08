@@ -6,9 +6,9 @@ namespace UniGenVR.Utils {
     // It has events that can be subscribed to by classes that need specific input.
     // This class must exist in every scene and so can be attached to the main
     // camera for ease.
-    public class VRInput : MonoBehaviour {
-        static VRInput instance;
-        public static VRInput Instance {
+    public class UGVRInput : MonoBehaviour {
+        static UGVRInput instance;
+        public static UGVRInput Instance {
             get { return instance; }
         }
 
@@ -33,6 +33,7 @@ namespace UniGenVR.Utils {
         [SerializeField] KeyCode m_CancelKey;
 
         [SerializeField] float m_MaxHoldTime = 2;
+        [SerializeField] float m_MaxGazeTime = 2;
         [SerializeField] float m_MinHoldTime = .2F;
         [SerializeField] float m_DoubleClickTime = 0.3f;
         [SerializeField] float m_SwipeDistance = 0.3f;         //The width of a swipe
@@ -44,24 +45,23 @@ namespace UniGenVR.Utils {
         private float m_LastHorizontalValue;                        // The previous value of the horizontal axis used to detect keyboard swipes.
         private float m_LastVerticalValue;                          // The previous value of the vertical axis used to detect keyboard swipes.
 
-
         public static float DoubleClickInterval { get { return instance.m_DoubleClickTime; } }
         public static float MaxHoldTime { get { return instance.m_MaxHoldTime; } }
+        public static float MaxGazeTime { get { return instance.m_MaxGazeTime; } }
         public static float MinHoldTime { get { return instance.m_MinHoldTime; } }
         public static float SwipeDistance { get { return instance.m_SwipeDistance; } }
 
         private void Awake() {
-            var instances = FindObjectsOfType<VRInput>();
+            var instances = FindObjectsOfType<UGVRInput>();
             if (instances.Length > 1)
                 Destroy(gameObject);
             else
-                instance = gameObject.GetComponent<VRInput>();
+                instance = gameObject.GetComponent<UGVRInput>();
         }
 
         private void Update() {
             CheckInput();
         }
-
 
         private void CheckInput() {
             // Set the default swipe to be none.

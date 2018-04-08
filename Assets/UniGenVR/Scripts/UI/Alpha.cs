@@ -6,31 +6,33 @@ namespace UniGenVR.UI {
     // This class is used to fade in and out groups of UI
     // elements.  It contains a variety of functions for
     // fading in different ways.
-    public class UIFader : MonoBehaviour {
-        public event Action OnFadeInComplete;                   // This event is triggered when the UI elements have finished fading in.
-        public event Action OnFadeOutComplete;                  // This event is triggered when the UI elements have finished fading out.
+    public class Alpha : MonoBehaviour {
+        // This event is triggered when the UI elements have finished fading in.
+        public event Action OnFadeInComplete;
 
+        // This event is triggered when the UI elements have finished fading out.
+        public event Action OnFadeOutComplete;
 
-        [SerializeField] private float m_FadeSpeed = 1f;        // The amount the alpha of the UI elements changes per second.
-        [SerializeField] private CanvasGroup[] m_GroupsToFade;  // All the groups of UI elements that will fade in and out.
+        // The amount the alpha of the UI elements changes per second.
+        [SerializeField] private float m_FadeSpeed = 1f;
 
+        // All the groups of UI elements that will fade in and out.
+        [SerializeField] private CanvasGroup[] m_GroupsToFade;
 
-        private bool m_Fading;                                  // Whether the UI elements are currently fading in or out.
+        // Whether the UI elements are currently fading in or out.
+        private bool m_Fading;
 
-
-        public bool Visible { get; private set; }               // Whether the UI elements are currently visible.
-
-
+        // Whether the UI elements are currently visible.
+        public bool Visible { get; private set; }
+            
         public IEnumerator WaitForFadeIn() {
             // Keep coming back each frame whilst the groups are currently fading.
-            while (m_Fading) {
+            while (m_Fading) 
                 yield return null;
-            }
 
             // Return once the FadeIn coroutine has finished.
             yield return StartCoroutine(FadeIn());
         }
-
 
         public IEnumerator InteruptAndFadeIn() {
             // Stop all fading that is currently happening.
@@ -40,13 +42,11 @@ namespace UniGenVR.UI {
             yield return StartCoroutine(FadeIn());
         }
 
-
         public IEnumerator CheckAndFadeIn() {
             // If not already fading return once the FadeIn coroutine has finished.
             if (!m_Fading)
                 yield return StartCoroutine(FadeIn());
         }
-
 
         public IEnumerator FadeIn() {
             // Fading has now started.
@@ -85,8 +85,7 @@ namespace UniGenVR.UI {
             // Since everthing has faded in now, it is visible.
             Visible = true;
         }
-
-
+        
         // The following functions are identical to the previous ones but fade the CanvasGroups out instead.
         public IEnumerator WaitForFadeOut() {
             while (m_Fading) {
@@ -95,20 +94,17 @@ namespace UniGenVR.UI {
 
             yield return StartCoroutine(FadeOut());
         }
-
-
+        
         public IEnumerator InteruptAndFadeOut() {
             StopAllCoroutines();
             yield return StartCoroutine(FadeOut());
         }
-
-
+        
         public IEnumerator CheckAndFadeOut() {
             if (!m_Fading)
                 yield return StartCoroutine(FadeOut());
         }
-
-
+        
         public IEnumerator FadeOut() {
             m_Fading = true;
 
@@ -135,8 +131,7 @@ namespace UniGenVR.UI {
 
             Visible = false;
         }
-
-
+        
         // These functions are used if fades are required to be instant.
         public void SetVisible() {
             for (int i = 0; i < m_GroupsToFade.Length; i++) {
@@ -145,8 +140,7 @@ namespace UniGenVR.UI {
 
             Visible = true;
         }
-
-
+        
         public void SetInvisible() {
             for (int i = 0; i < m_GroupsToFade.Length; i++) {
                 m_GroupsToFade[i].alpha = 0f;

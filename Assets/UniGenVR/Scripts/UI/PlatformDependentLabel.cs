@@ -2,29 +2,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UniGenVR.Utils
-{
+namespace UniGenVR.UI {
     // This script is to make the content of a Text
     // component different depending on the platform.
-    public class PlatformDependentText : MonoBehaviour
-    {
+    public class PlatformDependentLabel : MonoBehaviour {
         // This class is used to group together the platform and text specific to it.
         [Serializable]
-        public class PlatformTextPair
-        {
+        public class PlatformTextPair {
             public RuntimePlatform m_Platform;
             [Multiline] public string m_Text;
 
 
-            public PlatformTextPair (RuntimePlatform platform)
-            {
+            public PlatformTextPair(RuntimePlatform platform) {
                 m_Platform = platform;
             }
         }
 
 
         [SerializeField] private Text m_TextComponent;                      // Refernce to the component that is going to display the text.
-        [SerializeField] private PlatformTextPair[] m_PlatformTextPairs =   // Collection of platforms with associated strings.
+        [SerializeField]
+        private PlatformTextPair[] m_PlatformTextPairs =   // Collection of platforms with associated strings.
         {
             new PlatformTextPair (RuntimePlatform.OSXEditor),               // By default this collection has instances for editor on
             new PlatformTextPair (RuntimePlatform.WindowsEditor),           // both editor platforms.
@@ -35,8 +32,7 @@ namespace UniGenVR.Utils
 
         // OnValidate is called whenever anything changes in the inspector for this script.
         // It is only executed in the editor.  This is used to make setting up this script less time consuming.
-        private void OnValidate ()
-        {
+        private void OnValidate() {
             // Only continue with the function if there is a Text component reference...
             if (!m_TextComponent)
                 return;
@@ -60,13 +56,11 @@ namespace UniGenVR.Utils
             // If the checks are passed, set the first PlatformTextPair to have the same text as the text component.
             m_PlatformTextPairs[0].m_Text = m_TextComponent.text;
         }
-        
-        
-        private void Awake ()
-        {
+
+
+        private void Awake() {
             // Go through all the PlatformTextPairs and if they have the current platform set the text appropriately.
-            for (int i = 0; i < m_PlatformTextPairs.Length; i++)
-            {
+            for (int i = 0; i < m_PlatformTextPairs.Length; i++) {
                 if (m_PlatformTextPairs[i].m_Platform == Application.platform)
                     m_TextComponent.text = m_PlatformTextPairs[i].m_Text;
             }

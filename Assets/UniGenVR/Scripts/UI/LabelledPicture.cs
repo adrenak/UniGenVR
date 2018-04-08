@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 
 namespace UniGenVR.UI {
-    public class UGVR_Image : MonoBehaviour {
+    public class LabelledPicture : MonoBehaviour {
         [SerializeField] Image image;
+        [SerializeField] Text text;
 
         public void Show() {
             gameObject.SetActive(true);
@@ -15,6 +16,10 @@ namespace UniGenVR.UI {
 
         public void SetImage(Sprite sprite) {
             image.sprite = sprite;
+        }
+
+        public void SetLabel(string label) {
+            text.text = label;
         }
     }
 }

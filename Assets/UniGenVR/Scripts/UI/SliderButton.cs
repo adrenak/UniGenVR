@@ -8,7 +8,7 @@ namespace UniGenVR.UI {
     [RequireComponent(typeof(Interactable))]
     [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(AudioSource))]
-    public class SliderButton : VRBehaviour {
+    public class SliderButton : MonoBehaviour {
         public event Action OnSliderFilled;
 
         [SerializeField] Text label;
@@ -16,9 +16,11 @@ namespace UniGenVR.UI {
         [SerializeField] AudioClip m_OnOverClip;
         [SerializeField] AudioClip m_OnOutClip;
         [SerializeField] AudioClip m_OnFilledClip;
+        [SerializeField] float m_HoldTime = 2;
+        [SerializeField] bool m_GazeBased;
 
         Slider m_Slider;
-        UIFader m_UIFader;
+        Alpha m_UIFader;
         Collider m_Collider;
         AudioSource m_Audio;
 
@@ -33,24 +35,10 @@ namespace UniGenVR.UI {
             m_Audio = GetComponent<AudioSource>();
             m_Slider = transform.GetChild(0).GetComponent<Slider>();
             m_Collider = GetComponent<BoxCollider>();
-            m_UIFader = GetComponentInParent<UIFader>();
+            m_UIFader = GetComponentInParent<Alpha>();
         }
 
-        private void OnEnable() {
-            interactable.OnOver += HandleOver;
-            interactable.OnOut += HandleOut;
-            interactable.OnDown += HandleDown;
-            interactable.OnUp += HandleUp;
-        }
-        
-        private void OnDisable() {
-            interactable.OnOver -= HandleOver;
-            interactable.OnOut -= HandleOut;
-            interactable.OnDown -= HandleDown;
-            interactable.OnUp -= HandleUp;
-        }
-
-        private void Update() {
+        void Update() {
             // TODO: This has bugs
             // If this bar is using a UIFader turn off the collider when it's invisible.
             if (m_UIFader)
@@ -62,8 +50,8 @@ namespace UniGenVR.UI {
             else
                 m_Timer = 0;
 
-            SetSliderValue(m_Timer / VRInput.MaxHoldTime);
-            if (m_Timer > VRInput.MaxHoldTime)
+            SetSliderValue(m_Timer / UGVRInput.MaxHoldTime);
+            if (m_Timer > m_HoldTime)
                 SliderFilled();
         }
 
@@ -72,7 +60,7 @@ namespace UniGenVR.UI {
                 m_Slider.value = value;
         }
         
-        private void SliderFilled() {
+        void SliderFilled() {
             // If anything has subscribed to OnBarFilled call it now.
             if (OnSliderFilled != null)
                 OnSliderFilled();
@@ -89,19 +77,20 @@ namespace UniGenVR.UI {
             SetSliderValue(0);
         }
                 
-        private void HandleUp() {
+        public void HandleUp() {
             m_Fill = false;
         }
-        
-        private void HandleDown() {
+
+        public void HandleDown() {
             m_Fill = true;
         }
 
-        private void HandleOver() {
+        public void HandleOver() {
             TryPlayAudioClip(m_OnOverClip);
+            if (m_GazeBased) m_Fill = true;
         }
-        
-        private void HandleOut() {
+
+        public void HandleOut() {
             m_Fill = false;
             TryPlayAudioClip(m_OnOutClip);
         }

@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 
 namespace UniGenVR.UI {
-    public class UGVR_Text : MonoBehaviour {
+    public class HighlightedLabel : MonoBehaviour {
+        [SerializeField] Image highlight;
         [SerializeField] Text text;
 
         public void Show() {

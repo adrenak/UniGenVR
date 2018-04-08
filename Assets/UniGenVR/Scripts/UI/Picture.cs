@@ -2,9 +2,8 @@
 using UnityEngine.UI;
 
 namespace UniGenVR.UI {
-    public class UGVR_HighlightedText : MonoBehaviour {
-        [SerializeField] Image highlight;
-        [SerializeField] Text text;
+    public class Picture : MonoBehaviour {
+        [SerializeField] Image image;
 
         public void Show() {
             gameObject.SetActive(true);
@@ -14,8 +13,8 @@ namespace UniGenVR.UI {
             gameObject.SetActive(false);
         }
 
-        public void SetText(string txt) {
-            text.text = txt;
+        public void SetImage(Sprite sprite) {
+            image.sprite = sprite;
         }
     }
 }

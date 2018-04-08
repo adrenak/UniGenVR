@@ -4,32 +4,48 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace UniGenVR.Player {
+namespace UniGenVR.UI {
     // This class is used to fade the entire screen to black (or
     // any chosen colour).  It should be used to smooth out the
     // transition between scenes or restarting of a scene.
-    public class CameraFader : VRBehaviour {
-        public event Action OnFadeComplete;                             // This is called when the fade in or out has finished.
-        public Color fadeColor = Color.black;       // The colour the image fades out to.
+    public class Fader : MonoBehaviour {
+        // This is called when the fade in or out has finished.
+        public event Action OnFadeComplete;
+
+        // The colour the image fades out to.
+        public Color fadeColor = Color.black;
+
+        // Reference to the image that covers the screen.
+        [SerializeField] Image m_FadeImage;
+
+        // How long it takes to fade in seconds.
+        [SerializeField] float m_DefaultFadeDuration = 2.0f;
+
+        // Whether a fade in should happen as soon as the scene is loaded.
+        [SerializeField] bool m_FadeInOnSceneLoad = false;
+
+        // Whether a fade in should happen just but Updates start.
+        [SerializeField] bool m_FadeInOnStart = false;
+
+        // Whether the screen is currently fading.
+        bool m_IsFading;
+
+        // The time when fading started.
+        float m_FadeStartTime;
+
+        // This is a transparent version of the fade colour, it will ensure fading looks normal.
+        Color m_FadeColorTrans;
+
         public bool IsFading { get { return m_IsFading; } }
 
-        [SerializeField] private Image m_FadeImage;                     // Reference to the image that covers the screen.
-        [SerializeField] private float m_DefaultFadeDuration = 2.0f;           // How long it takes to fade in seconds.
-        [SerializeField] private bool m_FadeInOnSceneLoad = false;      // Whether a fade in should happen as soon as the scene is loaded.
-        [SerializeField] private bool m_FadeInOnStart = false;          // Whether a fade in should happen just but Updates start.
-
-        private bool m_IsFading;                                        // Whether the screen is currently fading.
-        private float m_FadeStartTime;                                  // The time when fading started.
-        private Color m_FadeColorTrans;                                   // This is a transparent version of the fade colour, it will ensure fading looks normal.
-
-        private void Awake() {
+        void Awake() {
             SceneManager.sceneLoaded += HandleSceneLoaded;
 
             m_FadeColorTrans = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0f);
             m_FadeImage.enabled = true;
         }
 
-        private void Start() {
+        void Start() {
             // If applicable set the immediate colour to be faded out and then fade in.
             if (m_FadeInOnStart) {
                 m_FadeImage.color = fadeColor;
@@ -37,7 +53,7 @@ namespace UniGenVR.Player {
             }
         }
 
-        private void HandleSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
+        void HandleSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
             // If applicable set the immediate colour to be faded out and then fade in.
             if (m_FadeInOnSceneLoad) {
                 m_FadeImage.color = fadeColor;
@@ -103,9 +119,6 @@ namespace UniGenVR.Player {
             // Fading is finished so allow other fading calls again.
             m_IsFading = false;
 
-            // Invoke events and callbacks
-            if (OnFadeComplete != null)
-                OnFadeComplete();
             if (callback != null)
                 callback();
         }

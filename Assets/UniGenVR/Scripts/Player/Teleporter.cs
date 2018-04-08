@@ -1,93 +1,63 @@
 ﻿using UnityEngine;
-using UniPrep.Utils;
 using UniGenVR.Utils;
 using UniPrep.Extensions;
+using UnityEngine.Events;
+using UniGenVR.Events;
 
 namespace UniGenVR.Player {
-    public class Teleporter : VRBehaviour {
-        public LayerMask blockingLayers;
-        public LayerMask teleportableLayers;
-        public float teleportDistance = 5;
-        public float fadeDuration = .33f;
-        public GameObject markerPrefab;
-        public Transform m_ParentTransform;
-
-        bool m_DidHitOnClick;
-        Marker m_Marker;
-
-        private void Start() {
-            if (markerPrefab != null)
-                m_Marker = Instantiate(markerPrefab).GetComponent<Marker>();
+    public class Teleporter : MonoBehaviour {
+        [SerializeField] LayerMask blockingLayers;
+        [SerializeField] LayerMask teleportableLayers;
+        [SerializeField] float teleportDistance = 5;
+        public Vector3HitUnityEvent OnTeleportUnityEvent = new Vector3HitUnityEvent();
+        public Vector3HitUnityEvent OnGazeTeleportableUnityEvent = new Vector3HitUnityEvent();
+        public UnityEvent OnGazeNonTeleportableUnityEvent;
+      
+        void OnEnable() {
+            UGVRInput.OnDoubleClick += HandleOnDoubleClick;
         }
 
-        private void OnEnable() {
-            VRInput.OnDown += HandleDown;
-            VRInput.OnMaxHold += HandleMaxHold;
+        void OnDisable() {
+            UGVRInput.OnDoubleClick -= HandleOnDoubleClick;
         }
 
-        private void OnDisable() {
-            VRInput.OnClick -= HandleDown;
-            VRInput.OnMaxHold -= HandleMaxHold;
+        void Update() {
+            Raycast();
         }
 
-        private void Update() {
-            if (m_Marker) UpdateMarker();
-        }
-
-        void UpdateMarker() {
+        void Raycast() {
             RaycastHit? hit;
-            var hitting = PerformRaycast(out hit);
-            m_Marker.Set(hitting);
-            reticle.Set(!hitting);
-
-            if (hitting){
-                var sureHit = (RaycastHit)hit;
-                m_Marker.transform.position = sureHit.point;
-                m_Marker.transform.eulerAngles = new Vector3(-90, 0, 0);
+            if(PerformRaycast(out hit)) {
+                if (OnGazeTeleportableUnityEvent != null)
+                    OnGazeTeleportableUnityEvent.Invoke(((RaycastHit)hit).point);
+            }
+            else {
+                if (OnGazeNonTeleportableUnityEvent != null)
+                    OnGazeNonTeleportableUnityEvent.Invoke();
             }
         }
 
-        bool PerformRaycast(out RaycastHit? outputHit) {
+        bool PerformRaycast(out RaycastHit? outHit) {
             Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit internalHit;
+            RaycastHit innerHit;
 
-            if (Physics.Raycast(ray, out internalHit, teleportDistance, blockingLayers)) {
-                int hitLayer = internalHit.collider.gameObject.layer;
+            if (Physics.Raycast(ray, out innerHit, teleportDistance, blockingLayers)) {
+                int hitLayer = innerHit.collider.gameObject.layer;
                 if (teleportableLayers.Contains(hitLayer)) {
-                    outputHit = internalHit;
+                    outHit = innerHit;
                     return true;
                 }
             }
-            outputHit = null;
+            outHit = null;
             return false;
         }
-
-        private void HandleDown() {
-            RaycastHit? hit;
-            m_DidHitOnClick = PerformRaycast(out hit);
-        }
-
-        private void HandleMaxHold() {
-            if (!m_DidHitOnClick) {
-                m_DidHitOnClick = false;
-                return;
-            }
-
+        
+        void HandleOnDoubleClick() {
             RaycastHit? hit;
             if (!PerformRaycast(out hit))
                 return;
-            Vector3 hitPoint = ((RaycastHit)hit).point;
 
-            Work fadeOutWork = new Work(cameraFade.BeginFadeOut(fadeDuration));
-            fadeOutWork.Begin(() => {
-                m_ParentTransform.position = new Vector3(
-                    hitPoint.x,
-                    hitPoint.y + playerEntity.Height,
-                    hitPoint.z
-                    );
-                Work fadeInWork = new Work(cameraFade.BeginFadeIn(fadeDuration));
-                fadeInWork.Begin();
-            });
+            if(OnTeleportUnityEvent != null) OnTeleportUnityEvent.Invoke(((RaycastHit)hit).point);
         }
     }
 }

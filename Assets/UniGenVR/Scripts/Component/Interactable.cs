@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace UniGenVR.Component {
@@ -6,80 +7,86 @@ namespace UniGenVR.Component {
     // that should react to input based on the user's gaze.
     // It contains events that can be subscribed to by classes that
     // need to know about input specifics to this gameobject.
-    public class Interactable : VRBehaviour {
-        public event Action OnOver;             // Called when the gaze moves over this object
-        public event Action OnOut;              // Called when the gaze leaves this object
-        public event Action OnClick;            // Called when click input is detected whilst the gaze is over this object.
-        public event Action OnDoubleClick;      // Called when double click input is detected whilst the gaze is over this object.
-        public event Action OnUp;               // Called when Fire1 is released whilst the gaze is over this object.
-        public event Action OnDown;             // Called when Fire1 is pressed whilst the gaze is over this object.
+    public class Interactable : MonoBehaviour {
+        [SerializeField] float m_GazeDuration = 2;
+        [SerializeField] float m_Timer = 0;
 
+        // Called when the gaze moves over this object
+        public event Action OnOverEvent;
         public UnityEvent OnOverUnityEvent;
+
+        // Called when the gaze leaves this object
+        public event Action OnOutEvent;
         public UnityEvent OnOutUnityEvent;
+
+        // called when the gaze has been going on for the maximum gaze duration
+        public event Action OnGazedEvent;
+        public UnityEvent OnGazedUnityEvent;
+
+        // Called when click input is detected whilst the gaze is over this object.
+        public event Action OnClickEvent;
         public UnityEvent OnClickUnityEvent;
+
+        // Called when double click input is detected whilst the gaze is over this object.
+        public event Action OnDoubleClickEvent;
         public UnityEvent OnDoubleClickUnityEvent;
+
+        // Called when Fire1 is released whilst the gaze is over this object.
+        public event Action OnUpEvent;
         public UnityEvent OnUpUnityEvent;
+
+        // Called when Fire1 is pressed whilst the gaze is over this object.
+        public event Action OnDownEvent;
         public UnityEvent OnDownUnityEvent;
 
         protected bool m_IsOver;
 
-
         public bool IsOver {
-            get { return m_IsOver; }              // Is the gaze currently over this object?
+            get { return m_IsOver; }
         }
 
+        private void Update() {
+            if (m_IsOver) {
+                m_Timer += Time.deltaTime;
+                if (m_Timer > m_GazeDuration) {
+                    m_IsOver = false;
+                    m_Timer = 0;
+                    TryInvoke(OnGazedEvent, OnGazedUnityEvent);
+                }
+            }
+            else
+                m_Timer = 0;
+        }
 
-        // The below functions are called by the VREyeRaycaster when the appropriate input is detected.
-        // They in turn call the appropriate events should they have subscribers.
         public void Over() {
             m_IsOver = true;
-
-            if (OnOver != null)
-                OnOver();
-            if (OnOverUnityEvent != null)
-                OnOverUnityEvent.Invoke();
+            TryInvoke(OnOverEvent, OnOverUnityEvent);
         }
-
 
         public void Out() {
             m_IsOver = false;
-
-            if (OnOut != null)
-                OnOut();
-            if (OnOutUnityEvent != null)
-                OnOutUnityEvent.Invoke();
+            TryInvoke(OnOutEvent, OnOutUnityEvent);
         }
-
-
+        
         public void Click() {
-            if (OnClick != null)
-                OnClick();
-            if (OnClickUnityEvent != null)
-                OnClickUnityEvent.Invoke();
+            TryInvoke(OnClickEvent, OnClickUnityEvent);
         }
-
 
         public void DoubleClick() {
-            if (OnDoubleClick != null)
-                OnDoubleClick();
-            if (OnDoubleClickUnityEvent != null)
-                OnDoubleClickUnityEvent.Invoke();
+            TryInvoke(OnDoubleClickEvent, OnDoubleClickUnityEvent);
         }
-
 
         public void Up() {
-            if (OnUp != null)
-                OnUp();
-            if (OnUpUnityEvent != null)
-                OnUpUnityEvent.Invoke();
+            TryInvoke(OnUpEvent, OnUpUnityEvent);
         }
 
-
         public void Down() {
-            if (OnDown != null)
-                OnDown();
-            if (OnDownUnityEvent != null)
-                OnDownUnityEvent.Invoke();
+            TryInvoke(OnDownEvent, OnDownUnityEvent);
+        }
+
+        void TryInvoke(Action a, UnityEvent e) {
+            if (a != null) a();
+            if (e != null) e.Invoke();
         }
     }
 }

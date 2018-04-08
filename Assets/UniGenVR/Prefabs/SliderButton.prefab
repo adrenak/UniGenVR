@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8252848}
   - component: {fileID: 114162958432260290}
   m_Layer: 5
-  m_Name: UGVR Slider Button
+  m_Name: SliderButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,6 +331,8 @@ MonoBehaviour:
   m_OnOverClip: {fileID: 8300000, guid: b241e9ef9617bd8419cc57321b92572f, type: 3}
   m_OnOutClip: {fileID: 8300000, guid: 12761ee95124c6e4f84ae94903a24b94, type: 3}
   m_OnFilledClip: {fileID: 8300000, guid: 61814879977b233489307668b84ad242, type: 3}
+  m_HoldTime: 2
+  m_GazeBased: 0
 --- !u!114 &11463088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -375,12 +377,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GazeDuration: 0
+  m_Timer: 2
   OnOverUnityEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnOutUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnGazedUnityEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
