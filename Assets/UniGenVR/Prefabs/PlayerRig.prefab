@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4582749046983296}
   - component: {fileID: 195728739779888984}
-  - component: {fileID: 136534652007762024}
   - component: {fileID: 143830958484687388}
   - component: {fileID: 114335840244047808}
   m_Layer: 0
@@ -351,8 +350,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UniGenVR.Events.InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnNoInteractableUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -428,8 +427,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnGazeTeleportableUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -455,8 +454,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnGazeNonTeleportableUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -521,11 +520,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1140918807367686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6014478271772a4798c5744fad08786, type: 3}
+  m_Script: {fileID: 11500000, guid: bc67757e66226144385e3080027d6cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   height: 1.8
   radius: 0.5
+  m_TeleportFadeDuration: 0.5
   m_CameraTransform: {fileID: 4843719689842448}
 --- !u!114 &114342511972081754
 MonoBehaviour:
@@ -606,19 +606,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828812541120902}
   m_Enabled: 1
---- !u!136 &136534652007762024
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1140918807367686}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!143 &143830958484687388
 CharacterController:
   m_ObjectHideFlags: 1

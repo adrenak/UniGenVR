@@ -3,7 +3,6 @@ using UniPrep.Utils;
 using UniGenVR.UI;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterController))]
 public class PlayerRig : MonoBehaviour {
