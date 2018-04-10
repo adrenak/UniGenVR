@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UniGenVR.Component {
     public class LookAtHead : MonoBehaviour {
-        [SerializeField] Transform m_Target;
+        Transform m_Target;
 
         private void Start() {
             m_Target = GameObject.FindObjectOfType<PlayerHead>().transform;
