@@ -1,19 +1,20 @@
 # UniGenVR  
-A set of tools for making VR experiences for Generic VR devices.  
+UniGenVR is a collection of scripts to create mobile VR interaction with minimal code.  
 
 # Intro  
-GearVR and Daydream devices offer great input support through their controllers. Generic headsets only support gaze based input with limited interaction using Bluetooth/USB joysticks.  
+UniGenVR provides:  
+- `NavMesh` based walking  
+- `Waypoint` based navigation using `Teleport` and `NavMeshAgent`  
+- `Raycast` based interactions  
+- `UnityEngine.Input` class based interactions  
+- `UI` components 
 
-In this repository:  
-- The VR Samples project from Unity Technologies is modified  
-- Uses [Unity.GVR.InstantPreview](https://github.com/adrenak/Unity.GVR.InstantPreview) for helping test in the editor.  
-- Teleport using long trigger key press  
-
-# Soon  
-- Support for "walking" in VR using joystick or using gaze if controller is absent  
-- More UI components such as the already existing SelectionSlider
+# How to use
+- Set Android Level to 4.4+  
+- Enable Virtual Reality in Player Settings  
+- Try the Demo scene  
 
 # Contact  
 [@github](https://www.github.com/adrenak)  
 [@www](http://www.vatsalAmbastha.com)  
-[@twitter](https://www.twitter.com/vatsalAmbastha)  
+[@twitter](https://www.twitter.com/adrenak)  

@@ -13,13 +13,15 @@ namespace UniGenVR.Player {
     public class Interactor : MonoBehaviour {
         [SerializeField] private LayerMask m_ExcludedLayers;
         [SerializeField] private bool m_ShowDebugRay;
-        [SerializeField] private float m_RayLength = 500f;
 
-        public event Action<Interactable> OnInteractableEvent;
-        public InteractableUnityEvent OnInteractableUnityEvent = new InteractableUnityEvent();
+        public event Action<Interactable> OnInteractableHitEvent;
+        public InteractableUnityEvent OnInteractableHitUnityEvent = new InteractableUnityEvent();
 
-        public event Action OnNoInteractableEvent;
-        public UnityEvent OnNoInteractableUnityEvent;
+        public event Action<RaycastHit> OnHitEvent;
+        public RaycastHitUnityEvent OnHitUnityEvent = new RaycastHitUnityEvent();
+
+        public event Action OnNoHitEvent;
+        public UnityEvent OnNoHitUnityEvent;
 
         RaycastHit m_CurrentHit;
         Interactable m_CurrentInteractable;
@@ -52,39 +54,48 @@ namespace UniGenVR.Player {
         }
 
         void Raycast() {
-            if (m_ShowDebugRay) 
-                Debug.DrawRay(transform.position, transform.forward * m_RayLength, Color.blue, Time.deltaTime);
-
             Ray ray = new Ray(transform.position, transform.forward);
 
-            if (Physics.Raycast(ray, out m_CurrentHit, m_RayLength, ~m_ExcludedLayers)) {
-                m_CurrentInteractable = m_CurrentHit.collider.gameObject.GetComponent<Interactable>();
+            if (m_ShowDebugRay)
+                Debug.DrawRay(transform.position, transform.forward * 100, Color.blue, Time.deltaTime);
 
+
+            if (Physics.Raycast(ray, out m_CurrentHit, Mathf.Infinity, ~m_ExcludedLayers)) {
+                // Send event
+                if (OnHitEvent != null) OnHitEvent(m_CurrentHit);
+                if (OnHitUnityEvent != null) OnHitUnityEvent.Invoke(m_CurrentHit);
+
+                m_CurrentInteractable = m_CurrentHit.collider.gameObject.GetComponent<Interactable>();
                 if (m_CurrentInteractable == null) {
-                    OnNoInteractableUnityEvent.Invoke();
-                    DeactivateLastInteractable();
+                    TryDeactivateLastInteractable();
                     return;
                 }
+                var distance = Vector3.Distance(transform.position, m_CurrentInteractable.transform.position);
+                if (distance > m_CurrentInteractable.range)
+                    return;
 
-                if (OnInteractableEvent != null) OnInteractableEvent(m_CurrentInteractable);
-                if (OnInteractableUnityEvent != null) OnInteractableUnityEvent.Invoke(m_CurrentInteractable);
+                // Send event
+                if (OnInteractableHitEvent != null) OnInteractableHitEvent(m_CurrentInteractable);
+                if (OnInteractableHitUnityEvent != null) OnInteractableHitUnityEvent.Invoke(m_CurrentInteractable);
 
                 // If we hit an interactive item and it's not the same as the last interactive item, then call Over
                 if (m_CurrentInteractable != m_LastInteractable) {
-                    DeactivateLastInteractable();
+                    TryDeactivateLastInteractable();
                     m_CurrentInteractable.Over();
-                    m_LastInteractable = m_CurrentInteractable;
                 }
+                m_LastInteractable = m_CurrentInteractable;
             }
             else {
-                OnNoInteractableUnityEvent.Invoke();
-                // Nothing was hit, deactive the last interactive item.
-                DeactivateLastInteractable();
+                // Send event
+                if (OnNoHitEvent != null) OnNoHitEvent();
+                if (OnNoHitUnityEvent != null) OnNoHitUnityEvent.Invoke();
+
+                TryDeactivateLastInteractable();
                 m_CurrentInteractable = null;
             }
         }
 
-        void DeactivateLastInteractable() {
+        void TryDeactivateLastInteractable() {
             if (m_LastInteractable == null)
                 return;
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UniGenVR.Events;
 using UnityEngine.Events;
 
 namespace UniGenVR.Component {
@@ -8,8 +9,9 @@ namespace UniGenVR.Component {
     // It contains events that can be subscribed to by classes that
     // need to know about input specifics to this gameobject.
     public class Interactable : MonoBehaviour {
+        public float range = Mathf.Infinity;
         [SerializeField] float m_GazeDuration = 2;
-        [SerializeField] float m_Timer = 0;
+        float m_Timer = 0;
 
         // Called when the gaze moves over this object
         public event Action OnOverEvent;
@@ -18,6 +20,10 @@ namespace UniGenVR.Component {
         // Called when the gaze leaves this object
         public event Action OnOutEvent;
         public UnityEvent OnOutUnityEvent;
+
+        // Called every frame that the interactable is being gazed at
+        public event Action<float> OnBeingGazedEvent;
+        public FloatUnityEvent OnBeingGazedUnityEvent = new FloatUnityEvent();
 
         // called when the gaze has been going on for the maximum gaze duration
         public event Action OnGazedEvent;
@@ -48,6 +54,11 @@ namespace UniGenVR.Component {
         private void Update() {
             if (m_IsOver) {
                 m_Timer += Time.deltaTime;
+                var normGazeDuration = m_Timer / m_GazeDuration;
+                normGazeDuration = Mathf.Clamp01(normGazeDuration);
+                if (OnBeingGazedEvent != null) OnBeingGazedEvent(normGazeDuration);
+                if (OnBeingGazedUnityEvent != null) OnBeingGazedUnityEvent.Invoke(normGazeDuration);
+
                 if (m_Timer > m_GazeDuration) {
                     m_IsOver = false;
                     m_Timer = 0;
@@ -56,6 +67,13 @@ namespace UniGenVR.Component {
             }
             else
                 m_Timer = 0;
+        }
+
+        private void OnDrawGizmosSelected() {
+            if (range == Mathf.Infinity)
+                return;
+            Gizmos.color = new Color(1, 0, 0, .1F);
+            Gizmos.DrawSphere(transform.position, range);
         }
 
         public void Over() {

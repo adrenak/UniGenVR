@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GazeDuration: 0
-  m_Timer: 2
+  range: 0
+  m_GazeDuration: 2
   OnOverUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -207,6 +207,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  OnBeingGazedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.Events.FloatUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnGazedUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -271,7 +276,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346364726261128}
   m_LocalRotation: {x: -0.000000029802322, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.916}
   m_LocalScale: {x: 0.043649998, y: 0.043649998, z: 0.043649998}
   m_Children:
   - {fileID: 224406175710402828}
@@ -281,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.558, y: 2.607}
   m_SizeDelta: {x: 25, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224406175710402828

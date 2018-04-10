@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UniGenVR.Events;
 
 namespace UniGenVR.Component {
     [RequireComponent(typeof(Interactable))]
     public class Waypoint : MonoBehaviour {
-        [SerializeField]
-        Vector3HitUnityEvent OnGazedUnityEvent = new Vector3HitUnityEvent();
+        public event Action<Vector3> OnInteractedEvent;
+        public Vector3HitUnityEvent OnInteractedUnityEvent = new Vector3HitUnityEvent();
 
         // Gets the point directly below the waypoint
         public Vector3? GetGroundPoint() {
@@ -16,8 +17,10 @@ namespace UniGenVR.Component {
                 return null;
         }
 
-        public void OnGazed() {
-            OnGazedUnityEvent.Invoke((Vector3)GetGroundPoint());
+        public void Interact() {
+            var groundPoint = GetGroundPoint();
+            if(groundPoint != null)
+                OnInteractedUnityEvent.Invoke((Vector3)groundPoint);
         }
     }
 }
