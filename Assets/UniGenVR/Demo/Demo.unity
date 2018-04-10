@@ -2680,34 +2680,9 @@ Prefab:
       propertyPath: m_Name
       value: PlayerHeadRoot
       objectReference: {fileID: 0}
-    - target: {fileID: 4394155050302406, guid: b35f7e7fb2f373148a741ae57a801152, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -27.943
-      objectReference: {fileID: 0}
-    - target: {fileID: 114983671852305702, guid: b35f7e7fb2f373148a741ae57a801152,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b35f7e7fb2f373148a741ae57a801152, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1373087425 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1174760867058026, guid: b35f7e7fb2f373148a741ae57a801152,
-    type: 2}
-  m_PrefabInternal: {fileID: 1373087424}
---- !u!114 &1373087426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1373087425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b422f6f47a172fd4e9af4028430b10b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1401412691
 GameObject:
   m_ObjectHideFlags: 0

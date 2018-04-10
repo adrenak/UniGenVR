@@ -63,6 +63,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4394155050302406}
+  - component: {fileID: 114440373391642206}
   m_Layer: 0
   m_Name: PlayerHead
   m_TagString: Untagged
@@ -165,7 +166,7 @@ Transform:
   - {fileID: 4060922656487102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -27.943, z: 0}
 --- !u!20 &20236546445237296
 Camera:
   m_ObjectHideFlags: 1
@@ -370,6 +371,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114440373391642206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174760867058026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b422f6f47a172fd4e9af4028430b10b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114538750391832912
 MonoBehaviour:
   m_ObjectHideFlags: 1
