@@ -11,9 +11,35 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1174760867058026}
   m_IsPrefabParent: 1
---- !u!1 &1112860846053598
+--- !u!1 &1046783233379910
 GameObject:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4060922656487102}
+  - component: {fileID: 20236546445237296}
+  - component: {fileID: 124350169241744710}
+  - component: {fileID: 92909710358571396}
+  - component: {fileID: 81881706764297794}
+  - component: {fileID: 114352165271269908}
+  - component: {fileID: 114067965115286472}
+  - component: {fileID: 114877000121901888}
+  - component: {fileID: 114538750391832912}
+  - component: {fileID: 114181695987917932}
+  - component: {fileID: 114580767127062312}
+  - component: {fileID: 114775030936766824}
+  m_Layer: 0
+  m_Name: PlayerHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1112860846053598
+GameObject:
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -37,16 +63,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4394155050302406}
-  - component: {fileID: 20384603327170448}
-  - component: {fileID: 124703466178998540}
-  - component: {fileID: 92237321060664898}
-  - component: {fileID: 81839460770543826}
-  - component: {fileID: 114814979010154222}
-  - component: {fileID: 114536179007006352}
-  - component: {fileID: 114966867771905666}
-  - component: {fileID: 114343467575475632}
-  - component: {fileID: 114204424501343078}
-  - component: {fileID: 114583913716792512}
   m_Layer: 0
   m_Name: PlayerHead
   m_TagString: Untagged
@@ -122,26 +138,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4060922656487102
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046783233379910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224675065225071846}
+  m_Father: {fileID: 4394155050302406}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4394155050302406
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1174760867058026}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 1.8, z: -2.628}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224675065225071846}
+  - {fileID: 4060922656487102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &20384603327170448
+--- !u!20 &20236546445237296
 Camera:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -172,19 +202,19 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81839460770543826
+--- !u!81 &81881706764297794
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
---- !u!92 &92237321060664898
+--- !u!92 &92909710358571396
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
 --- !u!114 &114066286583883728
 MonoBehaviour:
@@ -213,6 +243,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114067965115286472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046783233379910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c18b880c62744449e7f9ea93ee01f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Canvas: {fileID: 223167838687806792}
 --- !u!114 &114156785655293824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,83 +267,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Canvas: {fileID: 223167838687806792}
---- !u!114 &114204424501343078
+--- !u!114 &114181695987917932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1187cfeccc01858478e86a4c4455a407, type: 3}
+  m_Script: {fileID: 11500000, guid: aff17147c9606014f8e8f74f255d466a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingLayers:
-    serializedVersion: 2
-    m_Bits: 288
-  teleportableLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  teleportDistance: 5
-  OnTeleportUnityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Teleport
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeTeleportableUnityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Set
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Place
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeNonTeleportableUnityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Set
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+  m_DefaultDistance: 5
+  m_UseNormal: 0
+  m_ReticleTransform: {fileID: 224227829290987052}
 --- !u!114 &114231549055496806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,22 +308,6 @@ MonoBehaviour:
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114343467575475632
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31957ab02a8654b448736febf48c16e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeColor: {r: 0, g: 0, b: 0, a: 1}
-  m_FadeImage: {fileID: 114652321742024214}
-  m_DefaultFadeDuration: 2
-  m_FadeInOnSceneLoad: 1
-  m_FadeInOnStart: 1
 --- !u!114 &114348723397010834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,29 +329,96 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 15
---- !u!114 &114536179007006352
+--- !u!114 &114352165271269908
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c18b880c62744449e7f9ea93ee01f2, type: 3}
+  m_Script: {fileID: 11500000, guid: ffebc012055484b4899e163803755608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Canvas: {fileID: 223167838687806792}
---- !u!114 &114583913716792512
+  m_ExcludedLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ShowDebugRay: 1
+  OnInteractableHitUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.Events.InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHitUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114181695987917932}
+        m_MethodName: SetPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UniGenVR.Events.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnNoHitUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114538750391832912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945b22554bd275546b7b23b4cb85bb6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 31957ab02a8654b448736febf48c16e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FadeImage: {fileID: 114652321742024214}
+  m_DefaultFadeDuration: 2
+  m_FadeInOnSceneLoad: 1
+  m_FadeInOnStart: 1
+--- !u!114 &114580767127062312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046783233379910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1187cfeccc01858478e86a4c4455a407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingLayers:
+    serializedVersion: 2
+    m_Bits: 288
+  teleportableLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  teleportDistance: 5
+  OnTeleportUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnGazeTeleportableUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnGazeNonTeleportableUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114652321742024214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,42 +446,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114814979010154222
+--- !u!114 &114775030936766824
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffebc012055484b4899e163803755608, type: 3}
+  m_Script: {fileID: 11500000, guid: 945b22554bd275546b7b23b4cb85bb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ExcludedLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ShowDebugRay: 1
-  OnInteractableHitUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UniGenVR.Events.InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnHitUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UniGenVR.Events.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnNoHitUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &114966867771905666
+--- !u!114 &114877000121901888
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03fb8390bc96a7f4cafebf5efc362f62, type: 3}
@@ -486,12 +497,12 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!124 &124703466178998540
+--- !u!124 &124350169241744710
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174760867058026}
+  m_GameObject: {fileID: 1046783233379910}
   m_Enabled: 1
 --- !u!222 &222165240593389480
 CanvasRenderer:
@@ -605,7 +616,7 @@ RectTransform:
   m_Children:
   - {fileID: 224227829290987052}
   - {fileID: 224992563595445720}
-  m_Father: {fileID: 4394155050302406}
+  m_Father: {fileID: 4060922656487102}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

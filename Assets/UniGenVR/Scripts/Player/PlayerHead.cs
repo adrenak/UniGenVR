@@ -13,7 +13,6 @@ namespace UniGenVR.Player {
         }
 
         void Update() {
-            transform.position = m_Body.transform.position + Vector3.up * m_Body.height;
             var bodyOrientation = m_Body.transform.eulerAngles;
             m_Body.transform.eulerAngles = new Vector3(
                 bodyOrientation.x,
