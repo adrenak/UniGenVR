@@ -151,8 +151,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808277111538274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 16.833, y: 4.155, z: 5.287}
+  m_LocalScale: {x: 0.27321726, y: 0.27321726, z: 0.27321726}
   m_Children:
   - {fileID: 224154074932618088}
   - {fileID: 4300694632274918}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: bfa9d55ad634f2948898f28d6ccc1a3c, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.6275863, b: 1, a: 0.3137255}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  range: 3
   m_GazeDuration: 2
   OnOverUnityEvent:
     m_PersistentCalls:
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: bfa9d55ad634f2948898f28d6ccc1a3c, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.627451, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:

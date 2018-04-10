@@ -4331,6 +4331,16 @@ Prefab:
       propertyPath: range
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114417015047480722, guid: 47e1439ceddaf244ebdaeb021d5168ef,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114693253448779140, guid: 47e1439ceddaf244ebdaeb021d5168ef,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47e1439ceddaf244ebdaeb021d5168ef, type: 2}
   m_IsPrefabParent: 0
