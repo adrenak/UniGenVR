@@ -4314,33 +4314,6 @@ Prefab:
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 1471050658}
-    - target: {fileID: 4953498363970232, guid: 47e1439ceddaf244ebdaeb021d5168ef, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.27321726
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953498363970232, guid: 47e1439ceddaf244ebdaeb021d5168ef, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.27321726
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953498363970232, guid: 47e1439ceddaf244ebdaeb021d5168ef, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.27321726
-      objectReference: {fileID: 0}
-    - target: {fileID: 114601895643574528, guid: 47e1439ceddaf244ebdaeb021d5168ef,
-        type: 2}
-      propertyPath: range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114417015047480722, guid: 47e1439ceddaf244ebdaeb021d5168ef,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114693253448779140, guid: 47e1439ceddaf244ebdaeb021d5168ef,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47e1439ceddaf244ebdaeb021d5168ef, type: 2}
   m_IsPrefabParent: 0
@@ -4478,7 +4451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd30e325ef4f764fbc43bb240f11220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1471050658}
 --- !u!114 &2016502122
 MonoBehaviour:
   m_ObjectHideFlags: 0
