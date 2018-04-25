@@ -2,12 +2,14 @@ using UnityEngine;
 using UniPrep.Utils;
 
 namespace UniGenVR.UI {
+    [ExecuteInEditMode]
     public class Hover : MonoBehaviour {
         [SerializeField] Transform m_SubjectTransform;
-        [SerializeField] float m_FollowSpeed = 2;
 
-        [SerializeField] float m_DistanceFromSubject;
-        [SerializeField] float m_HeightFromSubject;
+        [SerializeField] float m_Distance;
+        [Range(-90, 90)] [SerializeField] float m_Pitch;
+        [Range(-180, 190)] [SerializeField] float m_Yaw;
+        [SerializeField] float m_FollowRate = 2;
 
         float m_OriginalFollowSpeed;
 
@@ -15,11 +17,11 @@ namespace UniGenVR.UI {
         /// Snaps the object into the target position and rotation in a single frame
         /// </summary>
         public void Snap() {
-            var followSpeedTmp = m_FollowSpeed;
-            m_FollowSpeed = Mathf.Infinity;
+            var followSpeedTmp = m_FollowRate;
+            m_FollowRate = Mathf.Infinity;
 
             Work.StartDelayed(Time.deltaTime, () => {
-                m_FollowSpeed = followSpeedTmp;
+                m_FollowRate = followSpeedTmp;
             });
         }
 
@@ -28,33 +30,36 @@ namespace UniGenVR.UI {
         /// </summary>
         /// <param name="followSpeed"></param>
         public void SetFollowSpeed(float followSpeed) {
-            m_FollowSpeed = followSpeed;
+            m_FollowRate = followSpeed;
         }
 
         /// <summary>
         /// Resets the follow speed to the original vlaue
         /// </summary>
         public void ResetFollowSpeed() {
-            m_FollowSpeed = m_OriginalFollowSpeed;
+            m_FollowRate = m_OriginalFollowSpeed;
         }
 
         void Awake() {
-            m_OriginalFollowSpeed = m_FollowSpeed;
+            m_OriginalFollowSpeed = m_FollowRate;
         }
 
         void Update() {
+            // Clamp pitch and yaw
+            m_Pitch = Mathf.Clamp(m_Pitch, -90, 90);
+            m_Yaw = Mathf.Clamp(m_Yaw, -180, 180);
+
             // Set it's rotation to point from the UI to the camera.
             transform.rotation = Quaternion.LookRotation(transform.position - m_SubjectTransform.position);
 
-            // Find the direction the camera is looking but on a flat plane.
-            Vector3 targetDirection = Vector3.ProjectOnPlane(m_SubjectTransform.forward, Vector3.up).normalized;
+            Vector3 targetPosition = new Vector3(
+                m_SubjectTransform.position.x + (m_Distance * Mathf.Cos(Mathf.Deg2Rad * m_Pitch) * Mathf.Sin(Mathf.Deg2Rad * m_Yaw)),
+                m_SubjectTransform.position.y + (m_Distance * Mathf.Sin(Mathf.Deg2Rad * m_Pitch)),
+                m_SubjectTransform.position.z + (m_Distance * Mathf.Cos(Mathf.Deg2Rad * m_Pitch) * Mathf.Cos(Mathf.Deg2Rad * m_Yaw))
+            );
 
-            // Calculate a target position from the camera in the direction at the same distance from the camera as it was at Start.
-            Vector3 targetPosition = m_SubjectTransform.position + targetDirection * m_DistanceFromSubject;
-            targetPosition.y = m_SubjectTransform.position.y + m_HeightFromSubject;
-
-            // Set the target position  to be an interpolation of itself and the UI's position.
-            targetPosition = Vector3.Lerp(transform.position, targetPosition, m_FollowSpeed * Time.deltaTime);
+            // Set the target position to be an interpolation of itself and the UI's position.
+            targetPosition = Vector3.Lerp(transform.position, targetPosition, m_FollowRate * Time.deltaTime);
 
             // Set the position to the calculated target position.
             transform.position = targetPosition;
