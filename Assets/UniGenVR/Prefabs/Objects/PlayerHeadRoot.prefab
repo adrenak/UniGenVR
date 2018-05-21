@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 4394155050302406}
   - component: {fileID: 114440373391642206}
   m_Layer: 0
-  m_Name: PlayerHead
+  m_Name: PlayerHeadRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 222165240593389480}
   - component: {fileID: 114983671852305702}
   m_Layer: 5
-  m_Name: GUIReticle
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 222862495112124162}
   - component: {fileID: 114231549055496806}
   m_Layer: 5
-  m_Name: UISelectionBar
+  m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1046783233379910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -344,14 +344,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExcludedLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_ShowDebugRay: 1
-  OnInteractableHitUnityEvent:
+  OnHittingNonInteractable:
     m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UniGenVR.Events.InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      m_Calls:
+      - m_Target: {fileID: 114181695987917932}
+        m_MethodName: HideReticle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114877000121901888}
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UniGenVR.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHittingInteractable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114181695987917932}
+        m_MethodName: ShowReticle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UniGenVR.InteractableUnityEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  OnHitUnityEvent:
+  OnGazingInteractable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114877000121901888}
+        m_MethodName: SetFill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UniGenVR.FloatUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitting:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114181695987917932}
@@ -365,11 +419,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UniGenVR.Events.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnNoHitUnityEvent:
+    m_TypeName: UniGenVR.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnNotHitting:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114181695987917932}
+        m_MethodName: HideReticle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114181695987917932}
+        m_MethodName: ResetPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114877000121901888}
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114440373391642206
@@ -429,21 +516,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   teleportDistance: 5
-  OnTeleportUnityEvent:
+  OnTeleport:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeTeleportableUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UniGenVR.Events.Vector3HitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeNonTeleportableUnityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: UniGenVR.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  OnSeeTeleportable:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.RaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSeeNonTeleportable:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UniGenVR.NullableRaycastHitUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114652321742024214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,7 +588,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629671563245364}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
