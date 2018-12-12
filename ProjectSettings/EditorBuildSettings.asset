@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UniGenVR/Demo/Demo.unity
+    path: Assets/Adrenak/UniGenVR/Demo/Demo.unity
     guid: c3ca287f912e02547b3c2d63407d3b5c
