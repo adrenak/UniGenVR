@@ -25,7 +25,7 @@ namespace Adrenak.UniGenVR {
             var followSpeedTmp = m_FollowRate;
             m_FollowRate = Mathf.Infinity;
 
-            Runner.Delay(Time.deltaTime, () => {
+            Runner.New().WaitForSeconds(Time.deltaTime, () => {
                 m_FollowRate = followSpeedTmp;
             });
         }
