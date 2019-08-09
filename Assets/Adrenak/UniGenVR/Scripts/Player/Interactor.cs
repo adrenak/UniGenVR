@@ -17,6 +17,7 @@ namespace Adrenak.UniGenVR {
         public RaycastHitUnityEvent OnHitting = new RaycastHitUnityEvent();
         public UnityEvent OnNotHitting;
 
+		Ray ray;
         RaycastHit m_CurrentHit;
         Interactable m_CurrentInteractable;
         Interactable m_LastInteractable = null;
@@ -47,8 +48,12 @@ namespace Adrenak.UniGenVR {
             Raycast();
         }
 
+		public Ray GetRay() {
+			return ray;
+		}
+
         void Raycast() {
-            Ray ray = new Ray(transform.position, transform.forward);
+            ray = new Ray(transform.position, transform.forward);
 
             if (m_ShowDebugRay)
                 Debug.DrawRay(transform.position, transform.forward * 100, Color.blue, Time.deltaTime);
